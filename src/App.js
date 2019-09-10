@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 
-import Auth from './components/Auth/Auth'
 import Nav from './components/Nav/Nav'
 
 //stylesheets
@@ -11,7 +10,6 @@ export default class App extends Component {
     return (
       <div>
         <Nav />
-        <Auth />
       </div>
     )
   }

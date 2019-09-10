@@ -4,6 +4,9 @@ const session = require('express-session')
 const cors = require('cors')
 const massive = require('massive')
 
+//ctrl files
+const ctrlAuth = require('./controllers/authController')
+
 //setting up app
 const app = express()
 
@@ -15,7 +18,7 @@ const {
 } = process.env
 
 //TLM
-app.use(express())
+app.use(express.json())
 app.use(cors())
 app.use(session({
     resave: false,
@@ -36,6 +39,8 @@ massive(CONNECTION_STRING)
     })
 
 //auth endpoints
+app.post('/auth/register', ctrlAuth.register)
+app.post('/auth/login', ctrlAuth.login)
 
 //world endpoints
 
@@ -46,4 +51,3 @@ massive(CONNECTION_STRING)
 app.listen(SERVER_PORT, () => {
     console.log('Server Running! 👾')
 })
-
