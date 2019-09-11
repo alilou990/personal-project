@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
+//stylesheets
+import './Auth.css'
+
 export default class Auth extends Component {
     constructor(){
         super();
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            profile_pic: '',
+            register: false,
+            login: false
         }
     }
 
@@ -52,7 +58,6 @@ export default class Auth extends Component {
                 this.setState({
                     username: '',
                     password: '',
-                    profile_pic: ''
                 })
             })
             .catch(error => {
@@ -63,28 +68,32 @@ export default class Auth extends Component {
 
     render() {
         return (
-            <div>
-                <label>Username:</label>
-                <input 
-                    type='text'
-                    name='username'
-                    onChange={this.handleChange}
-                    value={this.state.username} />
-                <label>Password:</label>
-                <input 
-                    type='password'
-                    name='password'
-                    onChange={this.handleChange}
-                    value={this.state.password} />
-                <label>Profile Picture:</label>
-                <input 
-                    type='text'
-                    name='profile_picture'
-                    onChange={this.handleChange}
-                    value={this.state.profile_pic} />
-                <button onClick={this.login}>Login</button>
-                <button onClick={this.register}>Register</button>
-
+            <div className='main-container'>
+                <div className='subtitle'>
+                    <h1>Create A World All Your Own</h1>
+                </div>
+                <div className='inputs'>
+                    <label>Username:</label>
+                    <input 
+                        type='text'
+                        name='username'
+                        onChange={this.handleChange}
+                        value={this.state.username} />
+                    <label>Password:</label>
+                    <input 
+                        type='password'
+                        name='password'
+                        onChange={this.handleChange}
+                        value={this.state.password} />
+                    <label>Profile Picture:</label>
+                    <input 
+                        type='text'
+                        name='profile_picture'
+                        onChange={this.handleChange}
+                        value={this.state.profile_pic} />
+                    <button onClick={this.login}>Login</button>
+                    <button onClick={this.register}>Sign Up</button>
+                </div>
 
             </div>
         )

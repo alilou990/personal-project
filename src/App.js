@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import routes from './routes'
 import Nav from './components/Nav/Nav'
 
 //stylesheets
@@ -10,6 +10,7 @@ export default class App extends Component {
     return (
       <div>
         <Nav />
+        {routes}
       </div>
     )
   }

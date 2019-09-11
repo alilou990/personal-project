@@ -47,7 +47,13 @@ const register = async (req, res) => {
     }
  }
 
+ const logout = () => {
+     req.session.destroy()
+     res.sendStatus(200)
+ }
+
 module.exports = {
     register,
-    login
+    login,
+    logout
 }

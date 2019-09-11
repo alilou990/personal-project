@@ -6,6 +6,7 @@ const massive = require('massive')
 
 //ctrl files
 const ctrlAuth = require('./controllers/authController')
+const ctrlWorlds = require('./controllers/worldController')
 
 //setting up app
 const app = express()
@@ -41,13 +42,14 @@ massive(CONNECTION_STRING)
 //auth endpoints
 app.post('/auth/register', ctrlAuth.register)
 app.post('/auth/login', ctrlAuth.login)
+app.get('/auth/logout', ctrlAuth.logout)
 
 //world endpoints
+app.get('/api/worlds', ctrlWorlds.getWorlds)
 
 //details endpoints
 
 //get app listening
-
 app.listen(SERVER_PORT, () => {
     console.log('Server Running! 👾')
 })
