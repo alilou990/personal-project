@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import {Route} from 'react-router-dom'
 
-import InnerLang from './InnerLang'
+import Trade from './Trade'
 
-export default class Language extends Component {
+export default class Trade extends Component {
     render() {
         return (
             <div>
-                 <Route path='/world/:id/lang/:langid' component={InnerLang} />
+                 <Route path='/world/:worldid/trade/:tradeid' component={Trade} />
             </div>
         )
     }

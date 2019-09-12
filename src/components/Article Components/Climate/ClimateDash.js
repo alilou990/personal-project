@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import {Route} from 'react-router-dom'
 
-import InnerClimate from './InnerClimate'
+import Climate from './Climate'
 
-export default class Climate extends Component {
+export default class ClimateDash extends Component {
     render() {
         return (
             <div>
                 <h1>Hello</h1>
-                  <Route path='/world/:worldid/climate/:climateid' component={InnerClimate} />
+                  <Route path='/world/:worldid/climate/:climateid' component={Climate} />
             </div>
         )
     }
