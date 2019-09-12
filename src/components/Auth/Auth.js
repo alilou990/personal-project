@@ -33,7 +33,7 @@ export default class Auth extends Component {
         axios.post('/auth/register', body)
             .then(res => {
                 //this.props.userInfo(res.data)
-                //this.props.history.push('/dashboard')
+                this.props.history.push('/dashboard')
                 this.setState({
                     username: '',
                     password: '',
@@ -54,7 +54,7 @@ export default class Auth extends Component {
         axios.post('/auth/login', body)
             .then(res => {
                 //this.props.UserInfo(res.data)
-                //this.props.history.push('/dashboard')
+                this.props.history.push('/dashboard')
                 this.setState({
                     username: '',
                     password: '',

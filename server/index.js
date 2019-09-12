@@ -46,6 +46,9 @@ app.get('/auth/logout', ctrlAuth.logout)
 
 //world endpoints
 app.get('/api/worlds', ctrlWorlds.getWorlds)
+app.post('/api/worlds', ctrlWorlds.addWorld)
+// app.delete('/api/worlds/:worldid', ctrlWorlds.deleteWorld)
+app.put('/api/worlds/:id', ctrlWorlds.updateWorld)
 
 //details endpoints
 
