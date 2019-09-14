@@ -7,6 +7,7 @@ const massive = require('massive')
 //ctrl files
 const ctrlAuth = require('./controllers/authController')
 const ctrlWorlds = require('./controllers/worldController')
+const ctrlClimate = require('./controllers/articleContollers.js/climateController')
 
 //setting up app
 const app = express()
@@ -50,9 +51,13 @@ app.post('/api/worlds', ctrlWorlds.addWorld)
 // app.delete('/api/worlds/:worldid', ctrlWorlds.deleteWorld)
 app.put('/api/worlds/:id', ctrlWorlds.updateWorld)
 
-//details endpoints
+//climate endpoints
+app.get('/api/worlds/:id/climate', ctrlClimate.getClimate)
+app.get('/api/worlds/climate/:worldid', ctrlClimate.getOneClimate)
+app.post('/api/worlds/:worldid/climate', ctrlClimate.addClimate)
 
-//get app listening
+
+//app listening
 app.listen(SERVER_PORT, () => {
     console.log('Server Running! 👾')
 })

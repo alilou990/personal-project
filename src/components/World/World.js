@@ -1,56 +1,94 @@
 import React, { Component } from 'react'
 import {Switch, Route, Link} from 'react-router-dom'
+import axios from 'axios'
 
-import Character from '../Article Components/Character/Character'
-import Climate from '../Article Components/Climate/Climate'
-import Government from '../Article Components/Government/GovernmentDash'
-import Img from '../Article Components/Img/Img'
-import Language from '../Article Components/Language/LanguageDash'
-import Magic from '../Article Components/Magic/MagicDash'
-import Military from '../Article Components/Military/MilitaryDash'
-import Myth from '../Article Components/Myth/MythDash'
-import Profession from '../Article Components/Profession/ProfessionDash'
-import Religion from '../Article Components/Religion/ReligionDash'
-import Trade from '../Article Components/Trade/Trade'
+import CharacterDash from '../Article Components/Character/Character'
+import ClimateDash from '../Article Components/Climate/ClimateDash'
+import GovernmentDash from '../Article Components/Government/GovernmentDash'
+import LanguageDash from '../Article Components/Language/LanguageDash'
+import MagicDash from '../Article Components/Magic/MagicDash'
+import ReligionDash from '../Article Components/Religion/ReligionDash'
+import TradeDash from '../Article Components/Trade/Trade'
+
 
 export default class World extends Component {
     constructor(){
         super();
         this.state = {
-            
+            updateWorld: false,
+            name: ''
         }
     }
+
+    handleUpdateToggle = () => {
+        this.setState({
+            updateWorld: !this.state.updateWorld
+        })
+    }
+
+    updateWorld = () => {
+        const id = this.props.match.params.worldid
+        const {name} = this.state
+        const body = {
+            name,
+            id
+        }
+        axios.put(`/api/worlds/${id}`, body)
+            .then(res => {
+                console.log(res.data)
+                this.handleUpdateToggle()
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+
+    handleOnChange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
     render() {
         const id = this.props.match.params.worldid
-        console.log(id)
         return (
             <div>
+                 <div>
+                {!this.state.updateWorld
+                ?
+                <div>
+                    <h1>{}</h1>
+                    <button onClick={this.handleUpdateToggle}>Edit</button>
+                   <Link to='/dashboard'><button>Back</button></Link> 
+                </div>
+                :
+                (<div className='update-world-form'>
+                    <label>New Name:</label>
+                    <input 
+                    type='text' 
+                    name='name'
+                    onChange={this.handleOnChange}
+                    value={this.state.name} />
+                    <button onClick={this.updateWorld}>Submit</button>
+                </div>)
+                }
                 <Link to={`/world/${id}/climate`}><button>Climate</button></Link>
                 <Link to={`/world/${id}/gov`}><button>Government</button></Link>
-                <Link to={`/world/${id}/img`}><button>Images</button></Link>
                 <Link to={`/world/${id}/lang`}><button>Language</button></Link>
                 <Link to={`/world/${id}/magic`}><button>Magic</button></Link>
-                <Link to={`/world/${id}/military`}><button>Military</button></Link>
-                <Link to={`/world/${id}/myth`}><button>Myth</button></Link>
-                <Link to={`/world/${id}/profession`}><button>Professions</button></Link>
                 <Link to={`/world/${id}/religion`}><button>Religion</button></Link>
                 <Link to={`/world/${id}/trade`}><button>Trade</button></Link>
 
 
-                <div>
+               
                     <Switch>
-
-                        <Route exact path='/world/:worldid/characters' component={Character}/>
-                        <Route exact path={`/world/:worldid/climate`}component={Climate}/>
-                        <Route exact path='/world/:worldid/gov' component={Government} />
-                        <Route exact path='/world/:worldid/img' component={Img} />
-                        <Route exact path='/world/:iworldd/lang' component={Language} />
-                        <Route exact path='/world/:worldid/magic' component={Magic} />
-                        <Route exact path='/world/:worldd/military' component={Military} />
-                        <Route exact path='/world/:worldid/myth' component={Myth} />
-                        <Route exact path='/world/:worldid/profession' component={Profession} />
-                        <Route exact path='/world/:worldid/religion' component={Religion} />
-                        <Route exact path='/world/:worldid/trade' component={Trade} />
+                        <Route path='/world/:worldid/characters' component={CharacterDash}/>
+                        <Route path='/world/:worldid/climate' component={ClimateDash}/>
+                        <Route path='/world/:worldid/gov' component={GovernmentDash} />
+                        <Route path='/world/:worldid/lang' component={LanguageDash} />
+                        <Route path='/world/:worldid/magic' component={MagicDash} />
+                        <Route path='/world/:worldid/religion' component={ReligionDash} />
+                        <Route path='/world/:worldid/trade' component={TradeDash} />
                     </Switch>
                 </div>
             </div>

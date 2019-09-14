@@ -24,12 +24,6 @@ export default class Dash extends Component {
         })
     }
 
-    handleUpdateToggle = () => {
-        this.setState({
-            updateWorld: !this.state.updateWorld
-        })
-    }
-
     handleOnChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
@@ -65,65 +59,35 @@ export default class Dash extends Component {
             })
     }
 
-    updateWorld = (id) => {
-        const {name} = this.state
-        const body = {
-            name
-        }
-        axios.put(`/api/worlds/${id}`, body)
-            .then(res => {
-                console.log(res.data)
-                this.handleUpdateToggle()
-                this.componentDidMount()
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
-
     render() {
         const mappedWorlds = this.state.worlds.map((world, i) => {
            return(
                 <div key={i}>
                     {/* need an image here  */}
                     <Link to={`/world/${world.id}`} key={i}> <p>{world.name}</p></Link>
-                    <button onClick={this.handleUpdateToggle}>Edit</button>
                 </div>
            )
            })
+        console.log(this.props)
         return (
-            <div className='main-world-display'>
+            <div >
                 {!this.state.createWorld
                 ?
-                (<div>
-                <button onClick={this.handleAddToggle}>Create New World</button>
-                {mappedWorlds}    
+                (<div className='main-world-display'>
+                    <button onClick={this.handleAddToggle}>Create New World</button>
+                    {mappedWorlds}    
                 </div>)
                 :
                 (<div className='create-world-form'>
                     <label>Name:</label>
                     <input 
-                    type='text' 
-                    name='name'
-                    onChange={this.handleOnChange}
-                    value={this.state.name} />
+                        type='text' 
+                        name='name'
+                        onChange={this.handleOnChange}
+                        value={this.state.name} />
                     <button onClick={this.addWorld}>Submit</button>
-                </div>)
-                }
-                {!this.state.updateWorld
-                ?
-                null
-                :
-                (<div className='update-world-form'>
-                    <label>New Name:</label>
-                    <input 
-                    type='text' 
-                    name='name'
-                    onChange={this.handleOnChange}
-                    value={this.state.name} />
-                    <button onClick={() => this.updateWorld(this.props.match.params.id)}>Submit</button>
-                </div>)
-                }
+                </div>)}
+                
                 
             </div>
         )

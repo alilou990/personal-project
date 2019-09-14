@@ -20,11 +20,12 @@ const addWorld = async (req, res) => {
 // }
 
 const updateWorld = async (req, res) => {
-    const {worldid} = req.params
+    const {id} = req.params
     const {name} = req.body
     const db = req.app.get('db')
-    await db.world.update_world([name, worldid])
-        res.status(200).send()
+    const updatedWorld = await db.world.update_world([name, id])
+    
+        res.status(200).send(updatedWorld)
 }
 
 module.exports = {

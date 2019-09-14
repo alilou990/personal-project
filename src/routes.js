@@ -11,5 +11,6 @@ export default (
         <Route exact path='/' component={Auth} />
         <Route path='/dashboard' component={Dash} />
         <Route path='/world/:worldid' component={World} />
+        
     </Switch>
 )
