@@ -1,24 +1,23 @@
 import React, { Component } from 'react'
-// import {Route, Link, Switch} from 'react-router-dom'
-import axios from 'axios';
+import {Route} from 'react-router-dom'
+import axios from 'axios'
 
-import Government from './Government'
+import Myth from './Myth'
 
-
-export default class GovernmentDash extends Component {
+export default class MythDash extends Component {
     constructor(){
         super();
         this.state = {
-            govs: [],
+            myths: [],
             content: '',
             img: '',
             title: '',
-            createGov: false
+            createMyth: false
         }
     }
 
     componentDidMount(){
-        this.getGovs()
+        this.getMyths()
     }
 
 
@@ -30,17 +29,17 @@ export default class GovernmentDash extends Component {
 
     handleAddToggle = () => {
         this.setState({
-            createGov: !this.state.createGov
+            createMyth: !this.state.createMyth
         })
     }
 
-    getGovs = () => {
+    getMyths = () => {
         const worldid = this.props.match.params.worldid
-        axios.get(`/api/worlds/${worldid}/gov`)
+        axios.get(`/api/worlds/${worldid}/myth`)
             .then(res => {
                 console.log(res)
                 this.setState({
-                    govs: res.data
+                    myths: res.data
                 })
             })
             .catch(error => {
@@ -48,7 +47,7 @@ export default class GovernmentDash extends Component {
             })
     }
 
-    addGov = () => {
+    addMyth = () => {
         console.log(this.props)
         const worldid = this.props.match.params.worldid
         const {content, img, title} = this.state
@@ -58,7 +57,7 @@ export default class GovernmentDash extends Component {
             img,
             title
         }
-        axios.post(`/api/worlds/${worldid}/gov`, body)
+        axios.post(`/api/worlds/${worldid}/myth`, body)
             .then(res => {
                 this.componentDidMount()
                 this.handleAddToggle()
@@ -71,9 +70,9 @@ export default class GovernmentDash extends Component {
     render() {
         // const worldid = this.props.match.params.worldid
         console.log(this.state)
-        const mappedGovs = this.state.govs.map((gov, i) => {
+        const mappedMyths = this.state.myths.map((myth, i) => {
             return(
-                <Government gov={gov} key={i} />
+                <Myth myth={myth} key={i} />
             )
             
             // return(
@@ -83,12 +82,12 @@ export default class GovernmentDash extends Component {
             // )
         })
         return (
-            <div className='gov-title-container'>
-                {!this.state.createGov
+            <div className='myth-title-container'>
+                {!this.state.createMyth
                 ?
                 (<div>
                 <button onClick={this.handleAddToggle}>Add An Article</button>
-                {mappedGovs}
+                {mappedMyths}
                 </div>)
                 :
                 (<div>
@@ -110,11 +109,9 @@ export default class GovernmentDash extends Component {
                        name='content'
                        onChange={this.handleOnChange}
                        value={this.state.content} />
-                    <button onClick={this.addGov}>Submit</button>
+                    <button onClick={this.addMyth}>Submit</button>
                 </div>)}
-            {/* <Switch>
-                <Route path='/world/:worldid/climate/:climateid' component={Climate} />
-            </Switch> */}
+                <Route path='/world/:worldid/myth/:mythid' component={Myth} />
             </div>
         )
     }

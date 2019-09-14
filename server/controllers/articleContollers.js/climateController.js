@@ -21,10 +21,19 @@ const addClimate = async (req, res) => {
 
 }
 
+const deleteClimate = async (req, res) => {
+    const {worldid} = req.params
+    const {climateid} = req.query
+    const db = req.app.get('db')
+    await db.articles.climate.delete_climate([climateid, worldid])
+        res.status(200).send('Article was deleted!')
+}
+
 
 
 module.exports = {
     getClimate,
     getOneClimate,
-    addClimate
+    addClimate,
+    deleteClimate
 }

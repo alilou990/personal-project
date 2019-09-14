@@ -7,6 +7,7 @@ import ClimateDash from '../Article Components/Climate/ClimateDash'
 import GovernmentDash from '../Article Components/Government/GovernmentDash'
 import LanguageDash from '../Article Components/Language/LanguageDash'
 import MagicDash from '../Article Components/Magic/MagicDash'
+import MythDash from '../Article Components/Myth/MythDash'
 import ReligionDash from '../Article Components/Religion/ReligionDash'
 import TradeDash from '../Article Components/Trade/Trade'
 
@@ -76,6 +77,7 @@ export default class World extends Component {
                 <Link to={`/world/${id}/gov`}><button>Government</button></Link>
                 <Link to={`/world/${id}/lang`}><button>Language</button></Link>
                 <Link to={`/world/${id}/magic`}><button>Magic</button></Link>
+                <Link to={`/world/${id}/myth`}><button>Myth</button></Link>
                 <Link to={`/world/${id}/religion`}><button>Religion</button></Link>
                 <Link to={`/world/${id}/trade`}><button>Trade</button></Link>
 
@@ -87,6 +89,7 @@ export default class World extends Component {
                         <Route path='/world/:worldid/gov' component={GovernmentDash} />
                         <Route path='/world/:worldid/lang' component={LanguageDash} />
                         <Route path='/world/:worldid/magic' component={MagicDash} />
+                        <Route path='/world/:worldid/myth' component={MythDash} />
                         <Route path='/world/:worldid/religion' component={ReligionDash} />
                         <Route path='/world/:worldid/trade' component={TradeDash} />
                     </Switch>

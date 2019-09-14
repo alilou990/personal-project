@@ -58,7 +58,6 @@ export default class ClimateDash extends Component {
         }
         axios.post(`/api/worlds/${worldid}/climate`, body)
             .then(res => {
-                console.log(res)
                 this.componentDidMount()
                 this.handleAddToggle()
             })
