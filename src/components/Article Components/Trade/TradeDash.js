@@ -68,11 +68,10 @@ export default class TradeDash extends Component {
     }
 
     render() {
-        // const worldid = this.props.match.params.worldid
         console.log(this.state)
         const mappedTrades = this.state.trades.map((trade, i) => {
             return(
-                <Trade trade={trade} key={i} />
+                <Trade trade={trade} key={i} getTrades={this.getTrades} content={this.state.content} title={this.state.title} img={this.state.img}/>
             )
             
             // return(

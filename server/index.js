@@ -124,25 +124,29 @@ app.put('/api/worlds/mag/magarticle/:id', ctrlMag.updateMag)
 app.get('/api/worlds/:worldid/religion', ctrlReligion.getReligion)
 app.get('/api/worlds/religion:worldid', ctrlReligion.getOneReligion)
 app.post('/api/worlds/:worldid/religion', ctrlReligion.addReligion)
-app.delete('/api/worlds/religion:worldid', ctrlReligion.deleteReligion)
+app.delete('/api/worlds/religion/religionarticle/:id', ctrlReligion.deleteReligion)
+app.put('/api/worlds/religion/religionarticle/:id', ctrlMag.updateMag)
 
 //trade endpoints
 app.get('/api/worlds/:worldid/trade', ctrlTrade.getTrade)
 app.get('/api/worlds/trade:worldid', ctrlTrade.getOneTrade)
 app.post('/api/worlds/:worldid/trade', ctrlTrade.addTrade)
-app.delete('/api/worlds/trade:worldid', ctrlTrade.deleteTrade)
+app.delete('/api/worlds/trade/tradearticle/:id', ctrlTrade.deleteTrade)
+app.put('/api/worlds/trade/tradearticle/:id', ctrlTrade.updateTrade)
 
 //myth endpoints
 app.get('/api/worlds/:worldid/myth', ctrlMyth.getMyth)
 app.get('/api/worlds/myth:worldid', ctrlMyth.getOneMyth)
 app.post('/api/worlds/:worldid/myth', ctrlMyth.addMyth)
-app.delete('/api/worlds/myth:worldid', ctrlMyth.deleteMyth)
+app.delete('/api/worlds/myth/mytharticle/:id', ctrlMyth.deleteMyth)
+app.put('/api/worlds/myth/mytharticle/:id', ctrlMyth.updateMyth)
 
 //profession endpoints
 app.get('/api/worlds/:profid/prof', ctrlProf.getProf)
 app.get('/api/worlds/prof:worldid', ctrlProf.getOneProf)
 app.post('/api/worlds/:worldid/prof', ctrlProf.addProf)
-app.delete('/api/worlds/prof:worldid', ctrlProf.deleteProf)
+app.delete('/api/worlds/prof/profarticle/:id', ctrlProf.deleteProf)
+app.put('/api/worlds/prof/profarticle/:id', ctrlProf.updateProf)
 
 //aws s3 endpoint
 app.get('/sign-s3', (req, res) => {

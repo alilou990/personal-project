@@ -22,11 +22,18 @@ const addProf = async (req, res) => {
 }
 
 const deleteProf = async (req, res) => {
-    const {worldid} = req.params
-    const {profid} = req.query
+    const {id} = req.params
     const db = req.app.get('db')
-    await db.articles.profession.delete_prof([profid, worldid])
+    await db.articles.profession.delete_prof([id])
         res.status(200).send('Article was deleted!')
+}
+
+const updateProf = async (req, res) => {
+    const {id} = req.params
+    const {editContent, editImg, editTitle} = req.body
+    const db = req.app.get('db')
+    const updatedArticle = await db.articles.profession.update_prof([editContent, editImg, editTitle, id])
+        res.status(200).send(updatedArticle)
 }
 
 
@@ -35,5 +42,6 @@ module.exports = {
     getProf,
     getOneProf,
     addProf,
-    deleteProf
+    deleteProf,
+    updateProf
 }

@@ -72,14 +72,8 @@ export default class ProfDash extends Component {
         console.log(this.state)
         const mappedProfs = this.state.profs.map((prof, i) => {
             return(
-                <Profession prof={prof} key={i} />
+                <Profession prof={prof} key={i} getProfs={this.getProfs} content={this.state.content} title={this.state.title} img={this.state.img}/>
             )
-            
-            // return(
-            //     <div key={i}>
-            //         <Link to={`/world/${worldid}/climate/${climate.id}`}><h1>{climate.title}</h1></Link>
-            //     </div>
-            // )
         })
         return (
             <div className='prof-title-container'>

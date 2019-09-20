@@ -72,14 +72,8 @@ export default class ReligionDash extends Component {
         console.log(this.state)
         const mappedReligions = this.state.religions.map((religion, i) => {
             return(
-                <Religion religion={religion} key={i} />
+                <Religion religion={religion} key={i} getReligions={this.getReligions} content={this.state.content} title={this.state.title} img={this.state.img}/>
             )
-            
-            // return(
-            //     <div key={i}>
-            //         <Link to={`/world/${worldid}/climate/${climate.id}`}><h1>{climate.title}</h1></Link>
-            //     </div>
-            // )
         })
         return (
             <div className='religion-title-container'>

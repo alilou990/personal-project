@@ -85,9 +85,7 @@ export default class Climate extends Component {
     //             console.log(error)
     //         })
     // }
-
     
-    //have a componentDidMount that does axios get with id from props.match and set res on state
     render() {
         const {climate} = this.props
         return (

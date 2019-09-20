@@ -22,11 +22,18 @@ const addMyth = async (req, res) => {
 }
 
 const deleteMyth = async (req, res) => {
-    const {worldid} = req.params
-    const {mythid} = req.query
+    const {id} = req.params
     const db = req.app.get('db')
-    await db.articles.myth.delete_myth([mythid, worldid])
+    await db.articles.myth.delete_myth([id])
         res.status(200).send('Article was deleted!')
+}
+
+const updateMyth = async (req, res) => {
+    const {id} = req.params
+    const {editContent, editImg, editTitle} = req.body
+    const db = req.app.get('db')
+    const updatedArticle = await db.articles.myth.update_myth([editContent, editImg, editTitle, id])
+        res.status(200).send(updatedArticle)
 }
 
 
@@ -35,5 +42,6 @@ module.exports = {
     getMyth,
     getOneMyth,
     addMyth,
-    deleteMyth
+    deleteMyth,
+    updateMyth
 }

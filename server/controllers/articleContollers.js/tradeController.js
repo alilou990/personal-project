@@ -22,18 +22,24 @@ const addTrade = async (req, res) => {
 }
 
 const deleteTrade = async (req, res) => {
-    const {worldid} = req.params
-    const {tradeid} = req.query
+    const {id} = req.params
     const db = req.app.get('db')
-    await db.articles.trade.delete_trade([tradeid, worldid])
+    await db.articles.trade.delete_trade([id])
         res.status(200).send('Article was deleted!')
 }
 
-
+const updateTrade = async (req, res) => {
+    const {id} = req.params
+    const {editContent, editImg, editTitle} = req.body
+    const db = req.app.get('db')
+    const updatedArticle = await db.articles.trade.update_trade([editContent, editImg, editTitle, id])
+        res.status(200).send(updatedArticle)
+}
 
 module.exports = {
     getTrade,
     getOneTrade,
     addTrade,
-    deleteTrade
+    deleteTrade,
+    updateTrade
 }

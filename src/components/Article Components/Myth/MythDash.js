@@ -72,14 +72,8 @@ export default class MythDash extends Component {
         console.log(this.state)
         const mappedMyths = this.state.myths.map((myth, i) => {
             return(
-                <Myth myth={myth} key={i} />
+                <Myth myth={myth} key={i} getMyths={this.getMyths} content={this.state.content} title={this.state.title} img={this.state.img}/>
             )
-            
-            // return(
-            //     <div key={i}>
-            //         <Link to={`/world/${worldid}/climate/${climate.id}`}><h1>{climate.title}</h1></Link>
-            //     </div>
-            // )
         })
         return (
             <div className='myth-title-container'>

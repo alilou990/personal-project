@@ -73,12 +73,6 @@ export default class ClimateDash extends Component {
             })
     }
 
-    updatedArticle = (data) => {
-        this.setState({
-            climates: data
-        })
-    }
-
    
 
     render() {

@@ -22,18 +22,24 @@ const addReligion = async (req, res) => {
 }
 
 const deleteReligion = async (req, res) => {
-    const {worldid} = req.params
-    const {religionid} = req.query
+    const {id} = req.params
     const db = req.app.get('db')
-    await db.articles.religion.delete_religion([religionid, worldid])
+    await db.articles.religion.delete_religion([id])
         res.status(200).send('Article was deleted!')
 }
 
-
+const updateReligion = async (req, res) => {
+    const {id} = req.params
+    const {editContent, editImg, editTitle} = req.body
+    const db = req.app.get('db')
+    const updatedArticle = await db.articles.religion.update_religion([editContent, editImg, editTitle, id])
+        res.status(200).send(updatedArticle)
+}
 
 module.exports = {
     getReligion,
     getOneReligion,
     addReligion,
-    deleteReligion
+    deleteReligion,
+    updateReligion
 }
