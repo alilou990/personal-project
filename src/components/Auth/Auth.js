@@ -12,8 +12,7 @@ class Auth extends Component {
         this.state = {
             username: '',
             password: '',
-            register: false,
-            login: false
+            register: false
         }
     }
 
@@ -24,6 +23,12 @@ class Auth extends Component {
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
+        })
+    }
+
+    handleToggle = () => {
+        this.setState({
+            register: !this.state.register
         })
     }
 
@@ -74,26 +79,74 @@ class Auth extends Component {
     render() {
         return (
             <div className='auth-container'>
-                <div className='subtitle'>
-                    <h1>Create A World All Your Own</h1>
-                </div>
-                <div className='inputs'>
-                    <label>Username:</label>
-                    <input 
-                        type='text'
-                        name='username'
-                        onChange={this.handleChange}
-                        value={this.state.username} />
-                    <label>Password:</label>
-                    <input 
-                        type='password'
-                        name='password'
-                        onChange={this.handleChange}
-                        value={this.state.password} />
-                    <button onClick={this.login}>Login</button>
-                    <button onClick={this.register}>Sign Up</button>
-                </div>
-
+                {!this.state.register
+                ?
+                (<div className='login-container'>
+                    <div className='subtitle-container'>
+                        <h1 className='subtitle-text'>Your World <br /> At Your Fingertips</h1>
+                    </div>
+                    <div className='inputs'>
+                        <div className='auth-header'>
+                            <h1>Sign In</h1>
+                        </div>
+                        <div className='title username'>
+                            <label className='input-title'>Username:</label>
+                            <input 
+                                className='input'
+                                type='text'
+                                name='username'
+                                onChange={this.handleChange}
+                                value={this.state.username} />
+                        </div>
+                        <div className='title username'>
+                            <label className='input-title'>Password:</label>
+                            <input 
+                                className='input'
+                                type='password'
+                                name='password'
+                                onChange={this.handleChange}
+                                value={this.state.password} />
+                        </div>
+                        <div className='button auth'>
+                            <button className='auth-btns' onClick={this.login}>Sign In</button>
+                            <button className='auth-btns' onClick={this.handleToggle}>Register</button>
+                        </div>
+                    </div>
+                </div>)
+                :
+                (<div className='login-container'>
+                    <div className='subtitle-container'>
+                        <h1 className='subtitle-text'>Your World <br /> At Your Fingertips</h1>
+                    </div>
+                    <div className='inputs'>
+                        <div className='auth-header'>
+                            <h1>Register</h1>
+                        </div>
+                        <div className='title username'>
+                            <label className='input-title'>Username:</label>
+                            <input 
+                                className='input'
+                                type='text'
+                                name='username'
+                                onChange={this.handleChange}
+                                value={this.state.username} />
+                        </div>
+                        <div className='title username'>
+                            <label className='input-title'>Password:</label>
+                            <input 
+                                className='input'
+                                type='password'
+                                name='password'
+                                onChange={this.handleChange}
+                                value={this.state.password} />
+                        </div>
+                        <div>
+                            <button className='auth-btns' onClick={this.handleToggle}>Sign In</button>
+                            <button className='auth-btns' onClick={this.register}>Register</button>
+                        </div>
+                    </div>
+                </div>)
+                }
             </div>
         )
     }

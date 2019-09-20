@@ -1,4 +1,4 @@
 insert into users
-(username, password, profile_pic)
+(username, password)
 values
 ($1, $2, $3)
