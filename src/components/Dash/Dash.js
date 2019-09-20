@@ -62,7 +62,7 @@ export default class Dash extends Component {
     render() {
         const mappedWorlds = this.state.worlds.map((world, i) => {
            return(
-                <div key={i}>
+                <div world={world} key={i}>
                     {/* need an image here  */}
                     <Link to={`/world/${world.id}`} key={i}> <p>{world.name}</p></Link>
                 </div>
@@ -70,7 +70,7 @@ export default class Dash extends Component {
            })
         console.log(this.props)
         return (
-            <div >
+            <div>
                 {!this.state.createWorld
                 ?
                 (<div className='main-world-display'>
@@ -88,6 +88,7 @@ export default class Dash extends Component {
                     <button onClick={this.addWorld}>Submit</button>
                 </div>)}
                 
+               
                 
             </div>
         )

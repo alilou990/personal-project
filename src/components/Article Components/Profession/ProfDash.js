@@ -2,22 +2,22 @@ import React, { Component } from 'react'
 import {Route} from 'react-router-dom'
 import axios from 'axios'
 
-import Trade from './Trade'
+import Profession from './Profession'
 
-export default class TradeDash extends Component {
+export default class ProfDash extends Component {
     constructor(){
         super();
         this.state = {
-            trades: [],
+            profs: [],
             content: '',
             img: '',
             title: '',
-            createTrade: false
+            createProf: false
         }
     }
 
     componentDidMount(){
-        this.getTrades()
+        this.getProfs()
     }
 
 
@@ -29,17 +29,17 @@ export default class TradeDash extends Component {
 
     handleAddToggle = () => {
         this.setState({
-            createTrade: !this.state.createTrade
+            createProf: !this.state.createProf
         })
     }
 
-    getTrades = () => {
+    getProfs = () => {
         const worldid = this.props.match.params.worldid
-        axios.get(`/api/worlds/${worldid}/trade`)
+        axios.get(`/api/worlds/${worldid}/prof`)
             .then(res => {
                 console.log(res)
                 this.setState({
-                    trade: res.data
+                    prods: res.data
                 })
             })
             .catch(error => {
@@ -47,7 +47,7 @@ export default class TradeDash extends Component {
             })
     }
 
-    addTrade = () => {
+    addProf = () => {
         console.log(this.props)
         const worldid = this.props.match.params.worldid
         const {content, img, title} = this.state
@@ -57,7 +57,7 @@ export default class TradeDash extends Component {
             img,
             title
         }
-        axios.post(`/api/worlds/${worldid}/trade`, body)
+        axios.post(`/api/worlds/${worldid}/prof`, body)
             .then(res => {
                 this.componentDidMount()
                 this.handleAddToggle()
@@ -70,9 +70,9 @@ export default class TradeDash extends Component {
     render() {
         // const worldid = this.props.match.params.worldid
         console.log(this.state)
-        const mappedTrades = this.state.trades.map((trade, i) => {
+        const mappedProfs = this.state.profs.map((prof, i) => {
             return(
-                <Trade trade={trade} key={i} />
+                <Profession prof={prof} key={i} />
             )
             
             // return(
@@ -82,12 +82,12 @@ export default class TradeDash extends Component {
             // )
         })
         return (
-            <div className='trade-title-container'>
-                {!this.state.createTrade
+            <div className='prof-title-container'>
+                {!this.state.createProf
                 ?
                 (<div>
                 <button onClick={this.handleAddToggle}>Add An Article</button>
-                {mappedTrades}
+                {mappedProfs}
                 </div>)
                 :
                 (<div>
@@ -109,9 +109,9 @@ export default class TradeDash extends Component {
                        name='content'
                        onChange={this.handleOnChange}
                        value={this.state.content} />
-                    <button onClick={this.addTrade}>Submit</button>
+                    <button onClick={this.addProf}>Submit</button>
                 </div>)}
-                <Route path='/world/:worldid/trade/:tradeid' component={Trade} />
+                <Route path='/world/:worldid/prof/:profid' component={Profession} />
             </div>
         )
     }

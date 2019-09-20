@@ -1,0 +1,20 @@
+.main-article-container{
+    background-image: url(https://i.ibb.co/GM9JJ0c/gen-lg-1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attactment: fixed;
+}
+
+.article-container{
+    max-height: 60em;
+    max-width: 60em;
+    background-color: red;
+    display: flex;
+    flex-direction: colummn;
+}
+
+.article-image{
+    max-height: 20em;
+    max-width: 40em;
+}
+

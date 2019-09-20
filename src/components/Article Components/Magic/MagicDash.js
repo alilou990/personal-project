@@ -68,18 +68,11 @@ export default class MagicDash extends Component {
     }
 
     render() {
-        // const worldid = this.props.match.params.worldid
         console.log(this.state)
         const mappedMags = this.state.mags.map((mag, i) => {
             return(
-                <Magic mag={mag} key={i} />
+                <Magic mag={mag} key={i} getMags={this.getMags} content={this.state.content} title={this.state.title} img={this.state.img}/>
             )
-            
-            // return(
-            //     <div key={i}>
-            //         <Link to={`/world/${worldid}/climate/${climate.id}`}><h1>{climate.title}</h1></Link>
-            //     </div>
-            // )
         })
         return (
             <div className='mag-title-container'>
@@ -111,9 +104,7 @@ export default class MagicDash extends Component {
                        value={this.state.content} />
                     <button onClick={this.addMag}>Submit</button>
                 </div>)}
-            {/* <Switch>
-                <Route path='/world/:worldid/climate/:climateid' component={Climate} />
-            </Switch> */}
+
             <Route path='/world/:worldid/magic/:magicid' component={Magic} />
             </div>
         )

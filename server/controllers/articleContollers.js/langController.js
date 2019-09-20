@@ -22,11 +22,18 @@ const addLang = async (req, res) => {
 }
 
 const deleteLang = async (req, res) => {
-    const {worldid} = req.params
-    const {langid} = req.query
+    const {id} = req.params
     const db = req.app.get('db')
-    await db.articles.language.delete_lang([langid, worldid])
+    await db.articles.language.delete_lang([id])
         res.status(200).send('Article was deleted!')
+}
+
+const updateLang = async (req, res) => {
+    const {id} = req.params
+    const {editContent, editImg, editTitle} = req.body
+    const db = req.app.get('db')
+    const updatedArticle = await db.articles.language.update_lang([editContent, editImg, editTitle, id])
+        res.status(200).send(updatedArticle)
 }
 
 
@@ -35,5 +42,6 @@ module.exports = {
     getLang,
     getOneLang,
     addLang,
-    deleteLang
+    deleteLang,
+    updateLang
 }

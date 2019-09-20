@@ -38,7 +38,6 @@ export default class GovernmentDash extends Component {
         const worldid = this.props.match.params.worldid
         axios.get(`/api/worlds/${worldid}/gov`)
             .then(res => {
-                console.log(res)
                 this.setState({
                     govs: res.data
                 })
@@ -49,7 +48,6 @@ export default class GovernmentDash extends Component {
     }
 
     addGov = () => {
-        console.log(this.props)
         const worldid = this.props.match.params.worldid
         const {content, img, title} = this.state
         const body = {
@@ -69,18 +67,10 @@ export default class GovernmentDash extends Component {
     }
 
     render() {
-        // const worldid = this.props.match.params.worldid
-        console.log(this.state)
         const mappedGovs = this.state.govs.map((gov, i) => {
             return(
-                <Government gov={gov} key={i} />
+                <Government gov={gov} key={i} getGovs={this.getGovs} content={this.state.content} title={this.state.title} img={this.state.img}/>
             )
-            
-            // return(
-            //     <div key={i}>
-            //         <Link to={`/world/${worldid}/climate/${climate.id}`}><h1>{climate.title}</h1></Link>
-            //     </div>
-            // )
         })
         return (
             <div className='gov-title-container'>
@@ -112,9 +102,6 @@ export default class GovernmentDash extends Component {
                        value={this.state.content} />
                     <button onClick={this.addGov}>Submit</button>
                 </div>)}
-            {/* <Switch>
-                <Route path='/world/:worldid/climate/:climateid' component={Climate} />
-            </Switch> */}
             </div>
         )
     }

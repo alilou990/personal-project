@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs')
 
 const register = async (req, res) => {
     //body info
-     const {username, password, profile_pic} = req.body;
+     const {username, password} = req.body;
      //db instance
      const db = req.app.get('db');
     //  console.log('db', db)
@@ -18,8 +18,8 @@ const register = async (req, res) => {
      newUser = await db.auth.register_user([username, hash, profile_pic])
              res.status(200).send(newUser[0])
      //store user info on the session
-     req.session.user = {...newUser[0]};
-     return res.status(200).send(req.session.user);
+     req.session.userid = {...newUser[0]};
+     return res.status(200).send(req.session.userid);
  
  }
 
@@ -47,7 +47,7 @@ const register = async (req, res) => {
     }
  }
 
- const logout = () => {
+ const logout = (req, res) => {
      req.session.destroy()
      res.sendStatus(200)
  }

@@ -14,6 +14,7 @@ const ctrlMag = require('./controllers/articleContollers.js/magController')
 const ctrlReligion = require('./controllers/articleContollers.js/religionController')
 const ctrlTrade = require('./controllers/articleContollers.js/tradeController')
 const ctrlMyth = require('./controllers/articleContollers.js/mythController')
+const ctrlProf = require('./controllers/articleContollers.js/profController')
 
 //setting up app
 const app = express()
@@ -22,8 +23,42 @@ const app = express()
 const {
     CONNECTION_STRING,
     SESSION_SECRET,
-    SERVER_PORT
+    SERVER_PORT,
+    S3_BUCKET,
+    AWS_ACCESS_KEY_ID,
+    AWS_SECRET_ACCESS_KEY
 } = process.env
+
+app.get('/api/signs3', (req, res) => {
+  aws.config = {
+      region: 'us-west-1',
+      accessKeyId: AWS_ACCESS_KEY_ID,
+      secretAccessKey: AWS_SECRET_ACCESS_KEY
+  };
+
+  const s3 = new aws.S3();
+  const fileName = req.query['file-name'];
+  const fileType = req.query['file-type'];
+  const s3Params = {
+      Bucket: S3_BUCKET,
+      Key: fileName,
+      ContentType: fileType,
+      ACL: 'public-read'
+  };
+
+  s3.getSignedUrl('putObject', s3Params, (err, data) => {
+      if (err) {
+          console.log(err);
+          return res.end();
+      }
+      const returnData = {
+          signedRequest: data,
+          url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`,
+      };
+
+      return res.send(returnData);
+  })
+})
 
 //TLM
 app.use(express.json())
@@ -49,7 +84,7 @@ massive(CONNECTION_STRING)
 //auth endpoints
 app.post('/auth/register', ctrlAuth.register)
 app.post('/auth/login', ctrlAuth.login)
-app.get('/auth/logout', ctrlAuth.logout)
+app.post('/auth/logout', ctrlAuth.logout)
 
 //world endpoints
 app.get('/api/worlds', ctrlWorlds.getWorlds)
@@ -61,25 +96,29 @@ app.put('/api/worlds/:id', ctrlWorlds.updateWorld)
 app.get('/api/worlds/:id/climate', ctrlClimate.getClimate)
 app.get('/api/worlds/climate/:worldid', ctrlClimate.getOneClimate)
 app.post('/api/worlds/:worldid/climate', ctrlClimate.addClimate)
-app.delete('/api/worlds/climate/:worldid', ctrlClimate.deleteClimate)
+app.delete('/api/worlds/climate/climatearticle/:id', ctrlClimate.deleteClimate)
+app.put('/api/worlds/climate/climatearticle/:id', ctrlClimate.updateClimate)
 
 //gov endpoints
 app.get('/api/worlds/:worldid/gov', ctrlGov.getGov)
 app.get('/api/worlds/gov:worldid', ctrlGov.getOneGov)
 app.post('/api/worlds/:worldid/gov', ctrlGov.addGov)
-app.delete('/api/worlds/gov:worldid', ctrlGov.deleteGov)
+app.delete('/api/worlds/gov/govarticle/:id', ctrlGov.deleteGov)
+app.put('/api/worlds/gov/govarticle/:id', ctrlGov.updateGov)
 
 //lang endpoints
 app.get('/api/worlds/:worldid/lang', ctrlLang.getLang)
 app.get('/api/worlds/lang:worldid', ctrlLang.getOneLang)
 app.post('/api/worlds/:worldid/lang', ctrlLang.addLang)
-app.delete('/api/worlds/lang:worldid', ctrlLang.deleteLang)
+app.delete('/api/worlds/lang/langarticle/:id', ctrlLang.deleteLang)
+app.put('/api/worlds/lang/langarticle/:id', ctrlLang.updateLang)
 
 //magic endpoints
 app.get('/api/worlds/:worldid/mag', ctrlMag.getMag)
 app.get('/api/worlds/mag:worldid', ctrlMag.getOneMag)
 app.post('/api/worlds/:worldid/mag', ctrlMag.addMag)
-app.delete('/api/worlds/mag:worldid', ctrlMag.deleteMag)
+app.delete('/api/worlds/mag/magarticle/:id', ctrlMag.deleteMag)
+app.put('/api/worlds/mag/magarticle/:id', ctrlMag.updateMag)
 
 //religion endpoints
 app.get('/api/worlds/:worldid/religion', ctrlReligion.getReligion)
@@ -98,6 +137,46 @@ app.get('/api/worlds/:worldid/myth', ctrlMyth.getMyth)
 app.get('/api/worlds/myth:worldid', ctrlMyth.getOneMyth)
 app.post('/api/worlds/:worldid/myth', ctrlMyth.addMyth)
 app.delete('/api/worlds/myth:worldid', ctrlMyth.deleteMyth)
+
+//profession endpoints
+app.get('/api/worlds/:profid/prof', ctrlProf.getProf)
+app.get('/api/worlds/prof:worldid', ctrlProf.getOneProf)
+app.post('/api/worlds/:worldid/prof', ctrlProf.addProf)
+app.delete('/api/worlds/prof:worldid', ctrlProf.deleteProf)
+
+//aws s3 endpoint
+app.get('/sign-s3', (req, res) => {
+
+    aws.config = {
+      region: 'us-west-1',
+      accessKeyId: AWS_ACCESS_KEY_ID,
+      secretAccessKey: AWS_SECRET_ACCESS_KEY
+    }
+    
+    const s3 = new aws.S3();
+    const fileName = req.query['file-name'];
+    const fileType = req.query['file-type'];
+    const s3Params = {
+      Bucket: S3_BUCKET,
+      Key: fileName,
+      Expires: 60,
+      ContentType: fileType,
+      ACL: 'public-read'
+    };
+  
+    s3.getSignedUrl('putObject', s3Params, (error, data) => {
+      if(error){
+        console.log(error);
+        return res.end();
+      }
+      const returnData = {
+        signedRequest: data,
+        url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+      };
+  
+      return res.send(returnData)
+    });
+  });
 
 
 //app listening

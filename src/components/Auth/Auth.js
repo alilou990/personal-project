@@ -1,19 +1,24 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {connect} from 'react-redux'
+import {userInfo} from '../../redux/reducer'
 
 //stylesheets
 import './Auth.css'
 
-export default class Auth extends Component {
+class Auth extends Component {
     constructor(){
         super();
         this.state = {
             username: '',
             password: '',
-            profile_pic: '',
             register: false,
             login: false
         }
+    }
+
+    componentDidMount(){
+        console.log(this.props)
     }
 
     handleChange = (event) => {
@@ -32,12 +37,11 @@ export default class Auth extends Component {
         //send post axios request
         axios.post('/auth/register', body)
             .then(res => {
-                //this.props.userInfo(res.data)
+                this.props.userInfo(res.data)
                 this.props.history.push('/dashboard')
                 this.setState({
                     username: '',
-                    password: '',
-                    profile_pic: ''
+                    password: ''
                 })
             })
             .catch(error => {
@@ -45,7 +49,7 @@ export default class Auth extends Component {
             })
     }
 
-    login = (req, res) => {
+    login = () => {
         const {username, password} = this.state
         const body = {
             username,
@@ -53,7 +57,8 @@ export default class Auth extends Component {
         }
         axios.post('/auth/login', body)
             .then(res => {
-                //this.props.UserInfo(res.data)
+                console.log(res.data)
+                this.props.userInfo(res.data)
                 this.props.history.push('/dashboard')
                 this.setState({
                     username: '',
@@ -68,7 +73,7 @@ export default class Auth extends Component {
 
     render() {
         return (
-            <div className='main-container'>
+            <div className='auth-container'>
                 <div className='subtitle'>
                     <h1>Create A World All Your Own</h1>
                 </div>
@@ -85,12 +90,6 @@ export default class Auth extends Component {
                         name='password'
                         onChange={this.handleChange}
                         value={this.state.password} />
-                    <label>Profile Picture:</label>
-                    <input 
-                        type='text'
-                        name='profile_picture'
-                        onChange={this.handleChange}
-                        value={this.state.profile_pic} />
                     <button onClick={this.login}>Login</button>
                     <button onClick={this.register}>Sign Up</button>
                 </div>
@@ -99,3 +98,5 @@ export default class Auth extends Component {
         )
     }
 }
+
+export default connect(null, {userInfo})(Auth)

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Switch, Route, Link} from 'react-router-dom'
+import {Link, Route} from 'react-router-dom'
 import axios from 'axios'
 
 import CharacterDash from '../Article Components/Character/Character'
@@ -8,8 +8,9 @@ import GovernmentDash from '../Article Components/Government/GovernmentDash'
 import LanguageDash from '../Article Components/Language/LanguageDash'
 import MagicDash from '../Article Components/Magic/MagicDash'
 import MythDash from '../Article Components/Myth/MythDash'
+import ProfDash from '../Article Components/Profession/ProfDash'
 import ReligionDash from '../Article Components/Religion/ReligionDash'
-import TradeDash from '../Article Components/Trade/Trade'
+import TradeDash from '../Article Components/Trade/TradeDash'
 
 
 export default class World extends Component {
@@ -51,9 +52,18 @@ export default class World extends Component {
     }
 
     render() {
+        
         const id = this.props.match.params.worldid
         return (
             <div>
+                <Link to={`/world/${id}/climate`}><button>Climates</button></Link>
+                    <Link to={`/world/${id}/gov`}><button>Governments</button></Link>
+                    <Link to={`/world/${id}/lang`}><button>Languages</button></Link>
+                    <Link to={`/world/${id}/magic`}><button>Magic</button></Link>
+                    <Link to={`/world/${id}/myth`}><button>Myths and Folklore</button></Link>
+                    <Link to={`/world/${id}/prof`}><button>Professions</button></Link>
+                    <Link to={`/world/${id}/religion`}><button>Religions</button></Link>
+                    <Link to={`/world/${id}/trade`}><button>Trade and Resources</button></Link>
                  <div>
                 {!this.state.updateWorld
                 ?
@@ -73,27 +83,17 @@ export default class World extends Component {
                     <button onClick={this.updateWorld}>Submit</button>
                 </div>)
                 }
-                <Link to={`/world/${id}/climate`}><button>Climate</button></Link>
-                <Link to={`/world/${id}/gov`}><button>Government</button></Link>
-                <Link to={`/world/${id}/lang`}><button>Language</button></Link>
-                <Link to={`/world/${id}/magic`}><button>Magic</button></Link>
-                <Link to={`/world/${id}/myth`}><button>Myth</button></Link>
-                <Link to={`/world/${id}/religion`}><button>Religion</button></Link>
-                <Link to={`/world/${id}/trade`}><button>Trade</button></Link>
-
-
-               
-                    <Switch>
-                        <Route path='/world/:worldid/characters' component={CharacterDash}/>
-                        <Route path='/world/:worldid/climate' component={ClimateDash}/>
-                        <Route path='/world/:worldid/gov' component={GovernmentDash} />
-                        <Route path='/world/:worldid/lang' component={LanguageDash} />
-                        <Route path='/world/:worldid/magic' component={MagicDash} />
-                        <Route path='/world/:worldid/myth' component={MythDash} />
-                        <Route path='/world/:worldid/religion' component={ReligionDash} />
-                        <Route path='/world/:worldid/trade' component={TradeDash} />
-                    </Switch>
                 </div>
+
+                    <Route path='/world/:worldid/characters' component={CharacterDash}/>
+                    <Route path='/world/:worldid/climate' component={ClimateDash}/>
+                    <Route path='/world/:worldid/gov' component={GovernmentDash} />
+                    <Route path='/world/:worldid/lang' component={LanguageDash} />
+                    <Route path='/world/:worldid/magic' component={MagicDash} />
+                    <Route path='/world/:worldid/myth' component={MythDash} />
+                    <Route path='/world/:worldid/prof' component={ProfDash} />
+                    <Route path='/world/:worldid/religion' component={ReligionDash} />
+                    <Route path='/world/:worldid/trade' component={TradeDash} />
             </div>
         )
     }

@@ -22,11 +22,19 @@ const addClimate = async (req, res) => {
 }
 
 const deleteClimate = async (req, res) => {
-    const {worldid} = req.params
-    const {climateid} = req.query
+    const {id} = req.params
     const db = req.app.get('db')
-    await db.articles.climate.delete_climate([climateid, worldid])
+    await db.articles.climate.delete_climate([id])
         res.status(200).send('Article was deleted!')
+}
+
+const updateClimate = async (req, res) => {
+    const {id} = req.params
+    const {editContent, editImg, editTitle} = req.body
+    const db = req.app.get('db')
+    const updatedArticle = await db.articles.climate.update_climate([editContent, editImg, editTitle, id])
+        res.status(200).send(updatedArticle)
+
 }
 
 
@@ -35,5 +43,6 @@ module.exports = {
     getClimate,
     getOneClimate,
     addClimate,
-    deleteClimate
+    deleteClimate,
+    updateClimate
 }

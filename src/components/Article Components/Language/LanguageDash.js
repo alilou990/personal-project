@@ -72,14 +72,8 @@ export default class LanguageDash extends Component {
         console.log(this.state)
         const mappedLangs = this.state.langs.map((lang, i) => {
             return(
-                <Language lang={lang} key={i} />
+                <Language lang={lang} key={i} getLangs={this.getLangs} content={this.state.content} title={this.state.title} img={this.state.img}/>
             )
-            
-            // return(
-            //     <div key={i}>
-            //         <Link to={`/world/${worldid}/climate/${climate.id}`}><h1>{climate.title}</h1></Link>
-            //     </div>
-            // )
         })
         return (
             <div className='lang-title-container'>
@@ -111,9 +105,6 @@ export default class LanguageDash extends Component {
                        value={this.state.content} />
                     <button onClick={this.addLang}>Submit</button>
                 </div>)}
-            {/* <Switch>
-                <Route path='/world/:worldid/climate/:climateid' component={Climate} />
-            </Switch> */}
             <Route path='/world/:worldid/lang/:langid' component={Language} />
             </div>
         )

@@ -22,12 +22,20 @@ const addMag = async (req, res) => {
 }
 
 const deleteMag = async (req, res) => {
-    const {worldid} = req.params
-    const {magid} = req.query
+    const {id} = req.params
     const db = req.app.get('db')
-    await db.articles.magic.delete_magic([magid, worldid])
+    await db.articles.magic.delete_magic([id])
         res.status(200).send('Article was deleted!')
 }
+
+const updateMag = async (req, res) => {
+    const {id} = req.params
+    const {editContent, editImg, editTitle} = req.body
+    const db = req.app.get('db')
+    const updatedArticle = await db.articles.magic.update_magic([editContent, editImg, editTitle, id])
+        res.status(200).send(updatedArticle)
+}
+
 
 
 
@@ -35,5 +43,6 @@ module.exports = {
     getMag,
     getOneMag,
     addMag,
-    deleteMag
+    deleteMag,
+    updateMag
 }

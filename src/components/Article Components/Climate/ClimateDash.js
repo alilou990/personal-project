@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 // import {Route, Link, Switch} from 'react-router-dom'
 import axios from 'axios';
+// import Dropzone from 'react-dropzone'
+// import {GridLoader} from 'react-spinners'
 
 import Climate from './Climate'
 
@@ -11,16 +13,18 @@ export default class ClimateDash extends Component {
         this.state = {
             climates: [],
             content: '',
-            img: '',
             title: '',
-            createClimate: false
+            img: '',
+            url: '',
+            createClimate: false,
+            isUploading: false
         }
     }
 
     componentDidMount(){
         this.getClimates()
+        
     }
-
 
     handleOnChange = (event) => {
         this.setState({
@@ -33,6 +37,10 @@ export default class ClimateDash extends Component {
             createClimate: !this.state.createClimate
         })
     }
+
+    
+
+    
 
     getClimates = () => {
         const id = this.props.match.params.worldid
@@ -49,7 +57,6 @@ export default class ClimateDash extends Component {
     }
 
     addClimate = (worldid) => {
-        console.log(this.props)
         const {content, img, title} = this.state
         const body = {
             content,
@@ -66,19 +73,22 @@ export default class ClimateDash extends Component {
             })
     }
 
+    updatedArticle = (data) => {
+        this.setState({
+            climates: data
+        })
+    }
+
+   
+
     render() {
-        // const worldid = this.props.match.params.worldid
-        console.log(this.state)
         const mappedClimates = this.state.climates.map((climate, i) => {
             return(
-            <Climate climate={climate} key={i} />
+            <div>
+                <Climate key={i} climate={climate}  getClimates={this.getClimates} content={this.state.content} title={this.state.title} img={this.state.img} />
+                
+            </div>
             )
-            
-            // return(
-            //     <div key={i}>
-            //         <Link to={`/world/${worldid}/climate/${climate.id}`}><h1>{climate.title}</h1></Link>
-            //     </div>
-            // )
         })
         return (
             <div className='climate-title-container'>
@@ -87,6 +97,7 @@ export default class ClimateDash extends Component {
                 (<div>
                 <button onClick={this.handleAddToggle}>Add An Article</button>
                 {mappedClimates}
+                
                 </div>)
                 :
                 (<div>
@@ -96,23 +107,20 @@ export default class ClimateDash extends Component {
                        name='title'
                        onChange={this.handleOnChange}
                        value={this.state.title} />
-                    <label>Image</label>
-                    <input 
-                       type='url'
-                       name='img'
-                       onChange={this.handleOnChange}
-                       value={this.state.image} /> 
                     <label>Content</label>
                     <input 
                        type='text'
                        name='content'
                        onChange={this.handleOnChange}
                        value={this.state.content} />
+                    <label>Image</label>
+                    <input 
+                       type='url'
+                       name='img'
+                       onChange={this.handleOnChange}
+                       value={this.state.image} /> 
                     <button onClick={() => this.addClimate(this.props.match.params.worldid)}>Submit</button>
                 </div>)}
-            {/* <Switch>
-                <Route path='/world/:worldid/climate/:climateid' component={Climate} />
-            </Switch> */}
             </div>
         )
     }

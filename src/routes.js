@@ -6,11 +6,12 @@ import Dash from './components/Dash/Dash'
 import World from './components/World/World'
 
 
+
 export default (
     <Switch>
         <Route exact path='/' component={Auth} />
         <Route path='/dashboard' component={Dash} />
-        <Route path='/world/:worldid' component={World} />
+        <Route path='/world/:worldid' component={World} />      
         
     </Switch>
 )
