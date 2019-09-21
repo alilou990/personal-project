@@ -19,7 +19,6 @@ class Nav extends Component {
     }
 
     render() {
-        console.log(this.props)
         const {location} = this.props
         return (
             <div>
@@ -28,17 +27,16 @@ class Nav extends Component {
             null
             :
             <div className='navbar'>
-                <div className='user-info'>
-                    <h1>Welcome Back,</h1>
-                    <h1>{this.props.username}</h1>
-                    <div className='logout'>
-                        <button onClick={this.logout}>Logout</button>
+                <div className='logo-container'>Fabula Terra</div>
+                    <div className='info-container'>
+                        <div className='user-info'>
+                            <h1>Welcome Back, </h1>
+                            <h1>{this.props.username}</h1>
+                        </div>
+                        <div className='logout-container'>
+                            <button className='logout-btn' onClick={this.logout}>Logout</button>
+                        </div>
                     </div>
-                </div>
-                <div className='nav-links'>
-                    <button>My Worlds</button>
-                    <button>About</button>
-                </div>
             </div>
             }  
                

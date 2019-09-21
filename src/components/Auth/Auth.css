@@ -1,22 +1,34 @@
-@import url('https://fonts.googleapis.com/css?family=Amatic+SC:400,700|Open+Sans+Condensed:300,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Homemade+Apple|Open+Sans+Condensed:300|Shadows+Into+Light&display=swap');
 
-.main-container{
+.auth-container{
     min-height: 100vh;
     width: 100vw;
     background-image: url(https://i.ibb.co/PgDHmCd/gen-lg-7.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    background-attachment: scroll;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
+.site-name {
+    font-family: 'Amatic SC', cursive;
+    font-size: 10em;
+    margin-bottom: 0.2em;
+    margin-left: 0.3em;
+    color: #0A3443;
+} 
+
 .subtitle-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     color: #1A5682;
     font-size: 5em;
     font-family: 'Amatic SC', cursive;
-    margin-bottom: 1em;
-    margin-left: 1.5em;
+    margin-bottom: 0.5em;
+    margin-right: 7em;
 } 
 .inputs{
     height: 20em;
@@ -26,7 +38,7 @@
     justify-content: center;
     align-items: center;
     margin-right: 35em;
-    margin-bottom: 6em;
+    margin-bottom: 2em;
     -moz-box-shadow: 4px 4px 6px 3px #6D9EB3;
     -webkit-box-shadow: 4px 4px 6px 3px #6D9EB3;
     box-shadow: 4px 4px 6px 2px #6D9EB3;
@@ -67,7 +79,7 @@
     -webkit-box-shadow: 1px 2px 3px 1px #6D9EB3;
     box-shadow: 1px 2px 3px 1px #6D9EB3;
     cursor: pointer;
-    transition-duration: 0.3s
+    transition-duration: 0.5s
 }
 
 .auth-btns:hover{
@@ -76,29 +88,42 @@
     color: #D9E5E9;
 }
 
+
 @media (max-width:500px){
-    .main-container{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        background-image: cover;
-        background-image: no-repeat;
-        background-image: url(https://i.ibb.co/LY4WqBj/auth-phone-lg.jpg)
+    .auth-container{
+        background-image: url(https://i.ibb.co/LY4WqBj/auth-phone-lg.jpg);
     }
 
     .inputs{
-        height: 10em;
+        height: 12em;
         width: 20em;
-        margin-bottom: 20em;
-        margin-left: 35em;
+        margin-bottom: 18em;
+        margin-right: 0;
+    }
+
+    .site-name {
+        font-size: 6rem;
+        margin-bottom: 0.4em;
     }
 
     .subtitle-text{
-        margin-left: 10em;
-        font-size: 3em;
+        margin-bottom: 1em;
+        margin-right: 0;
+        font-size: 2.5em;
 
     }
+
+    .auth-header {
+        margin-bottom: 0.5em;
+    }
     
+    .auth-btns {
+        margin: 0.5em;
+    }
+
+    .input {
+        margin: 0.3em;
+    }
     
 }
 

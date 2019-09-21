@@ -7,7 +7,7 @@ import Nav from './components/Nav/Nav'
 
 
 //stylesheets
-// import styled from 'styled-components'
+import styled from 'styled-components'
 import 'reset-css'
 import './App.css'
 

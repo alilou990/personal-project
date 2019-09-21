@@ -83,7 +83,11 @@ class Auth extends Component {
                 ?
                 (<div className='login-container'>
                     <div className='subtitle-container'>
-                        <h1 className='subtitle-text'>Your World <br /> At Your Fingertips</h1>
+                        <h1 className='site-name'>Fabula Terra</h1>
+                        <div className='subtitle-text'>
+                        <h1>Your World</h1>
+                        <h1>At Your Fingertips</h1>
+                        </div>
                     </div>
                     <div className='inputs'>
                         <div className='auth-header'>
@@ -108,15 +112,19 @@ class Auth extends Component {
                                 value={this.state.password} />
                         </div>
                         <div className='button auth'>
+                        <button className='auth-btns' onClick={this.handleToggle}>Register</button>
                             <button className='auth-btns' onClick={this.login}>Sign In</button>
-                            <button className='auth-btns' onClick={this.handleToggle}>Register</button>
                         </div>
                     </div>
                 </div>)
                 :
                 (<div className='login-container'>
                     <div className='subtitle-container'>
-                        <h1 className='subtitle-text'>Your World <br /> At Your Fingertips</h1>
+                    <h1 className='site-name'>Fabula Terra</h1>
+                    <div className='subtitle-text'>
+                        <h1>Your World</h1>
+                        <h1>At Your Fingertips</h1>
+                    </div>
                     </div>
                     <div className='inputs'>
                         <div className='auth-header'>
@@ -141,8 +149,8 @@ class Auth extends Component {
                                 value={this.state.password} />
                         </div>
                         <div>
-                            <button className='auth-btns' onClick={this.handleToggle}>Sign In</button>
                             <button className='auth-btns' onClick={this.register}>Register</button>
+                            <button className='auth-btns' onClick={this.handleToggle}>Sign In</button>
                         </div>
                     </div>
                 </div>)

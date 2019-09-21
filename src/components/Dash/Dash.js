@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 
+import './Dash.css'
 
 export default class Dash extends Component {
     constructor(){
