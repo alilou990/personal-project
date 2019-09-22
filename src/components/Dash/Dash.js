@@ -63,33 +63,44 @@ export default class Dash extends Component {
     render() {
         const mappedWorlds = this.state.worlds.map((world, i) => {
            return(
-                <div world={world} key={i}>
+                <div className='links-container' world={world} key={i}>
                     {/* need an image here  */}
-                    <Link to={`/world/${world.id}`} key={i}> <p>{world.name}</p></Link>
+                    <Link to={`/world/${world.id}`} key={i}> <button className='world-links'>{world.name}</button></Link>
                 </div>
            )
            })
         console.log(this.props)
         return (
-            <div>
+            <div className='main-world-display'>
+               <h1 className='page-title'>Your Worlds</h1> 
+               <div className='desktop-view-container'>
+               {mappedWorlds} 
+               </div>
                 {!this.state.createWorld
                 ?
-                (<div className='main-world-display'>
-                    <button onClick={this.handleAddToggle}>Create New World</button>
-                    {mappedWorlds}    
+                (<div className='world-container'>
+                    <div className='create-btn-container'>
+                    <button className='create-btn' onClick={this.handleAddToggle}>Create A New World</button>
+                    </div>
+                    
                 </div>)
                 :
                 (<div className='create-world-form'>
-                    <label>Name:</label>
-                    <input 
-                        type='text' 
-                        name='name'
-                        onChange={this.handleOnChange}
-                        value={this.state.name} />
-                    <button onClick={this.addWorld}>Submit</button>
+                        <label >Name Your New World:</label>
+                        <input 
+                            className='form-input'
+                            type='text' 
+                            name='name'
+                            onChange={this.handleOnChange}
+                            value={this.state.name} />
+                    <div className='form-btn-container'>
+                        <button className='form-btn' onClick={this.handleAddToggle}>Cancel</button>
+                        <button className='form-btn' onClick={this.addWorld}>Submit</button>
+                        
+                    </div>
                 </div>)}
                 
-               
+                
                 
             </div>
         )

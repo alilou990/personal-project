@@ -3,6 +3,7 @@ const express = require('express')
 const session = require('express-session')
 const cors = require('cors')
 const massive = require('massive')
+const aws = require('aws-sdk')
 
 //ctrl files
 const ctrlAuth = require('./controllers/authController')
@@ -29,7 +30,7 @@ const {
     AWS_SECRET_ACCESS_KEY
 } = process.env
 
-app.get('/api/signs3', (req, res) => {
+app.get('/api/s3', (req, res) => {
   aws.config = {
       region: 'us-west-1',
       accessKeyId: AWS_ACCESS_KEY_ID,

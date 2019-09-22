@@ -1,18 +1,189 @@
 .main-world-display{
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
-    background-image: url(https://i.ibb.co/1RBRvsC/dash-lg.jpg);
+    background-image: url(https://worldbuilding-app.s3-us-west-1.amazonaws.com/dash-final-real.jpg);
     background-image: cover;
-    background-image: no-repeat;
+    background-image: fixed;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: space-around; */
     
+}
+
+.desktop-view-container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.page-title{
+    font-family:'Amatic SC', cursive;
+    color: #0A3443;
+    font-size: 5.5em;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5em;
+    margin-top: 0.2em;
+}
+
+.create-btn{
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #0F364A;
+    background-color: #D9E5E9;
+    font-size: 1em;
+    text-decoration: none;
+    border: #F9F6F1;
+    padding: 16px 16px;
+    border-radius: 8%;
+    -moz-box-shadow: 1px 2px 3px 1px #6D9EB3;
+    -webkit-box-shadow: 1px 2px 3px 1px #6D9EB3;
+    box-shadow: 1px 2px 3px 1px #6D9EB3;
+    cursor: pointer;
+    transition-duration: 0.5s;
+    margin-top: 3em;
+}
+
+.create-btn:hover{
+    background: rgb(15,54,74);
+    background: linear-gradient(70deg, #0C2E40 0%, #1E5C82 40%, #C8DADD 100%); 
+    color: #D9E5E9;
+}
+
+.link-container{
+    display: flex;
+    flex-direction: row !important;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin-left: 2em;
+    
+}
+
+.world-links{
+    background-color: #031E3D;
+    padding: 2rem 5rem;
+    font-family:'Amatic SC', cursive;
+    font-size: 2em;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 5%;
+    color: #F9F6F1;
+    -moz-box-shadow: 1px 2px 3px 1px #6D9EB3;
+    -webkit-box-shadow: 1px 2px 3px 1px #6D9EB3;
+    box-shadow: 1px 2px 3px 1px #6D9EB3;
+    margin: 0.7em 0;
+    cursor: pointer;
+}
+
+.world-links:hover{
+    background: rgb(15,54,74);
+    background: linear-gradient(70deg, #031E3D 0%, #1E5C82 60%, #C8DADD 100%); 
+    color: #D9E5E9;
+}
+
+.create-world-form{
+    height: 9em;
+    width: 20em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    -moz-box-shadow: 1px 2px 3px 1px #1E5C82;
+    -webkit-box-shadow: 1px 2px 3px 1px #1E5C82;
+    box-shadow: 1px 2px 3px 1px #1E5C82;
+    border-radius: 8%;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 1.6em;
+    color: #031E3D;
+    margin-top: 4em;
+}
+
+.form-input{
+    height: 3em;
+    width: 15em;
+    border: 0.1px solid #031E3D;
+}
+
+.form-btn-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.form-btn{
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #0F364A;
+    background-color: #D9E5E9;
+    font-size: 0.8em;
+    text-decoration: none;
+    border: #F9F6F1;
+    padding: 7px 20px;
+    /* margin-bottom: 1em; */
+    border-radius: 8%;
+    -moz-box-shadow: 1px 2px 3px 1px #6D9EB3;
+    -webkit-box-shadow: 1px 2px 3px 1px #6D9EB3;
+    box-shadow: 1px 2px 3px 1px #6D9EB3;
+    cursor: pointer;
+    transition-duration: 0.5s;
+}
+
+.form-btn:hover{
+    background: rgb(15,54,74);
+    background: linear-gradient(70deg, #0C2E40 0%, #1E5C82 40%, #C8DADD 100%); 
+    color: #D9E5E9;
 }
 
 
 
 @media (max-width: 500px){
     .main-world-display{
-        background-image: url(https://i.ibb.co/WWtNBpJ/dash-phone.jpg);
+        background-image: url(https://worldbuilding-app.s3-us-west-1.amazonaws.com/phone-dash-final.jpg);
+        
     }
+
+    .world-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .create-btn{
+        padding: 8px 6px;
+        margin-top: 3em;
+    }
+
+    .page-title{
+        font-size: 3em;
+        margin-top: 0.5em;
+    }
+
     
+    
+    .world-links{
+        background-color: #031E3D;
+        padding: 0.3rem 2rem;
+        font-size: 1.7em;
+        margin: 0.7em 0;
+    }
+
+    .create-world-form{
+        height: 7em;
+        width: 15em;
+        font-size: 1.3em;
+        margin-top: 1em;
+    }
+
+    .form-input{
+        height: 2em;
+        border: 0.1px solid #031E3D;
+    }
+
+    .form-btn{
+        font-size: 0.5em;
+        padding: 8px 8px;
+    }
+
+    
+  
 }
