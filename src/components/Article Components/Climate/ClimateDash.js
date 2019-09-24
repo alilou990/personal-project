@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-// import {Route, Link, Switch} from 'react-router-dom'
 import axios from 'axios';
-// import Dropzone from 'react-dropzone'
-// import {GridLoader} from 'react-spinners'
+
 
 import Climate from './Climate'
+
+import './ClimateDash.css'
 
 
 export default class ClimateDash extends Component {
@@ -85,13 +85,12 @@ export default class ClimateDash extends Component {
             )
         })
         return (
-            <div className='climate-title-container'>
+            <div className='catagory-title-container'>
+                <h1 className='catagory-title'>Climate</h1>
                 {!this.state.createClimate
                 ?
                 (<div>
-                <button onClick={this.handleAddToggle}>Add An Article</button>
-                {mappedClimates}
-                
+                    <button onClick={this.handleAddToggle} className='add-article btn'>Add An Article</button>
                 </div>)
                 :
                 (<div>
@@ -115,6 +114,9 @@ export default class ClimateDash extends Component {
                        value={this.state.image} /> 
                     <button onClick={() => this.addClimate(this.props.match.params.worldid)}>Submit</button>
                 </div>)}
+                <div className='mapped-article-container'>
+                    {mappedClimates}
+                </div>
             </div>
         )
     }

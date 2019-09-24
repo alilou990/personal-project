@@ -70,11 +70,17 @@ export default class Religion extends Component {
                 {!this.state.editStatus
                 ?
                 (<div className='article-container'>
-                    <h1>{religion.title}</h1>
-                    <img src={religion.img} alt='article pic' className='article-ireligione'/>
-                    <p>{religion.content}</p>
-                    <button onClick={this.handleEditToggle}>Edit</button>
-                    <button onClick={() => this.deleteArticle(religion.id)}>Delete</button>
+                    <div className='main-content'>
+                        <h1 className='catagory-title'>{religion.title}</h1>
+                        <img src={religion.img} alt='article pic' className='article-image'/>
+                        <div className='content-container'>
+                            <p className='article-content'>{religion.content}</p>
+                        </div>
+                        <div className='btn-container'>
+                            <button onClick={this.handleEditToggle} className='article btn'>Edit</button>
+                            <button onClick={() => this.deleteArticle(religion.id)} className='article btn'>Delete</button>
+                        </div>
+                    </div>
                 </div>)
                 :
                 (<div>
@@ -102,6 +108,7 @@ export default class Religion extends Component {
                        onChange={this.handleOnChange}
                     //    value={this.state.editIreligione} 
                     /> 
+                    <button onClick={this.handleEditToggle}>Cancel</button>
                     <button onClick={() => this.updateArticle(religion.id)}>Submit</button>
                 </div>)
                 }

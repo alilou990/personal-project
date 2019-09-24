@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import {Route} from 'react-router-dom'
 import axios from 'axios'
 
 import Trade from './Trade'
@@ -73,20 +72,14 @@ export default class TradeDash extends Component {
             return(
                 <Trade trade={trade} key={i} getTrades={this.getTrades} content={this.state.content} title={this.state.title} img={this.state.img}/>
             )
-            
-            // return(
-            //     <div key={i}>
-            //         <Link to={`/world/${worldid}/climate/${climate.id}`}><h1>{climate.title}</h1></Link>
-            //     </div>
-            // )
         })
         return (
-            <div className='trade-title-container'>
+            <div className='catagory-title-container'>
+                <h1 className='catagory-title'>Trade and Resources</h1>
                 {!this.state.createTrade
                 ?
                 (<div>
-                <button onClick={this.handleAddToggle}>Add An Article</button>
-                {mappedTrades}
+                <button onClick={this.handleAddToggle} className='add-article btn'>Add An Article</button>
                 </div>)
                 :
                 (<div>
@@ -110,7 +103,9 @@ export default class TradeDash extends Component {
                        value={this.state.content} />
                     <button onClick={this.addTrade}>Submit</button>
                 </div>)}
-                <Route path='/world/:worldid/trade/:tradeid' component={Trade} />
+                <div className='mapped-article-container'>
+                    {mappedTrades}
+                </div>
             </div>
         )
     }

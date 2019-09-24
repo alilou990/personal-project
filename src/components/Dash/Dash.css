@@ -3,7 +3,7 @@
     width: 100%;
     background-image: url(https://worldbuilding-app.s3-us-west-1.amazonaws.com/dash-final-real.jpg);
     background-image: cover;
-    background-image: fixed;
+    background-attachment: fixed;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,6 +16,7 @@
     width: 100%;
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 .page-title{
@@ -50,9 +51,10 @@
     color: #D9E5E9;
 }
 
-.link-container{
+.outer-link-container{
     display: flex;
-    flex-direction: row !important;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     align-content: center;
@@ -72,7 +74,7 @@
     -moz-box-shadow: 1px 2px 3px 1px #6D9EB3;
     -webkit-box-shadow: 1px 2px 3px 1px #6D9EB3;
     box-shadow: 1px 2px 3px 1px #6D9EB3;
-    margin: 0.7em 0;
+    margin: 0.7em;
     cursor: pointer;
 }
 

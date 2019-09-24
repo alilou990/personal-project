@@ -1,0 +1,149 @@
+.world-main-container{
+    min-height: 100vh;
+    max-width: 100vw;
+    background-image: url(world-dash-desktop.jpg);
+    background-image: repeat;
+    background-attachment: fixed;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn {
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #0F364A;
+    background-color: #D9E5E9;
+    text-decoration: none;
+    border: #F9F6F1;
+    border-radius: 8%;
+    -moz-box-shadow: 1px 2px 3px 1px #6D9EB3;
+    -webkit-box-shadow: 1px 2px 3px 1px #6D9EB3;
+    box-shadow: 1px 2px 3px 1px #6D9EB3;
+    cursor: pointer;
+    transition-duration: 0.5s;
+}
+
+.btn:hover{
+    background: rgb(15,54,74);
+    background: linear-gradient(70deg, #0C2E40 0%, #1E5C82 40%, #C8DADD 100%); 
+    color: #D9E5E9;
+}
+
+.all-worlds {
+    margin: 3em;
+    padding: 0.5em 1em;
+    font-size: 1em;
+}
+
+.edit-container{
+    display: flex;
+    justify-content: center;
+
+}
+
+.world-title-container{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1em;
+    padding: 1em 1em;
+    -moz-box-shadow: 1px 2px 3px 1px #1E5C82;
+    -webkit-box-shadow: 1px 2px 3px 1px #1E5C82;
+    box-shadow: 1px 2px 3px 1px #1E5C82;
+    border: 1.4px solid #0F364A;
+    box-sizing:border-box;
+    border-radius: 3%;
+}
+
+
+.world-title{
+    /* height: 1em; */
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family:'Amatic SC', cursive;
+    font-size: 6em;
+    color: #0F364A;
+    letter-spacing: 0.2em;
+    padding: 0 1em;
+    margin-bottom: 0.3em;
+
+}
+
+.toggle {
+    font-size: 0.9em;
+    padding: 0.8em 0.8em;
+}
+
+.world-navbar{
+    height: 4em;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.catagory{
+    height: 3em;
+    width: 6em;
+    font-size: 1em;
+    margin: 1em;
+}
+
+@media (max-width: 500px){
+    .world-main-container{
+        background-image: url(world-phone-3.jpg);
+    }
+
+    .all-worlds {
+        margin: 2em;
+        font-size: 0.8em;
+    }
+
+    .toggle {
+        font-size: 0.5em;
+        padding: 0.4em 0.4em;
+        margin-left: 20em; 
+    }
+
+    .world-title-container{
+        width: 70%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+    
+    .world-title{
+        /* height: 3em; */
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3em;
+        letter-spacing: 0.1em;
+        /* border: 0.5px solid #0F364A; */
+        margin-bottom: 0.4em;
+        padding: 0.5em 0.5em;
+        /* margin-left: 3em; */
+    }
+
+    .world-navbar{
+        height: 4em;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .catagory{
+        height: 3em;
+        margin: 1em;
+        font-size: 0.8em;
+    }
+}

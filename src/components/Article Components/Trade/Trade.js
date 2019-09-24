@@ -70,11 +70,17 @@ export default class Trade extends Component {
                 {!this.state.editStatus
                 ?
                 (<div className='article-container'>
-                    <h1>{trade.title}</h1>
-                    <img src={trade.img} alt='article pic' className='article-itradee'/>
-                    <p>{trade.content}</p>
-                    <button onClick={this.handleEditToggle}>Edit</button>
-                    <button onClick={() => this.deleteArticle(trade.id)}>Delete</button>
+                    <div className='main-content'>
+                        <h1 className='catagory-title'>{trade.title}</h1>
+                        <img src={trade.img} alt='article pic' className='article-image'/>
+                        <div className='content-container'>
+                            <p className='article-content'>{trade.content}</p>
+                        </div>
+                        <div className='btn-container'>
+                            <button onClick={this.handleEditToggle} className='article btn'>Edit</button>
+                            <button onClick={() => this.deleteArticle(trade.id)} className='article btn'>Delete</button>
+                        </div>
+                    </div>
                 </div>)
                 :
                 (<div>
@@ -102,6 +108,7 @@ export default class Trade extends Component {
                        onChange={this.handleOnChange}
                     //    value={this.state.editItradee} 
                     /> 
+                    <button onClick={this.handleEditToggle}>Cancel</button>
                     <button onClick={() => this.updateArticle(trade.id)}>Submit</button>
                 </div>)
                 }

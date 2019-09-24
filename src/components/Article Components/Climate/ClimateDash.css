@@ -1,0 +1,43 @@
+.catagory-title-container{
+    min-height: 100%;
+    max-width: 100%;
+    background-image: inherit;
+    background-attachment: fixed;
+    margin-top: 5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.catagory-title{
+    font-family: 'Amatic SC', cursive;
+    color: #0A3443;
+    font-size: 5em;
+    margin-bottom: 0.1em;
+}
+
+.add-article{
+    padding: 0.6em;
+    font-size: 1em;
+}
+
+
+@media (max-width: 500px){
+    .catagory-title-container{
+        margin-top: 5em;
+    }
+
+    .catagory-title{
+        font-family: 'Amatic SC', cursive;
+        color: #0A3443;
+        font-size: 4em;
+        margin-bottom: 0.1em;
+    }
+
+    .add-article{
+        padding: 0.5em;
+        font-size: 0.8em;
+    }
+
+
+}

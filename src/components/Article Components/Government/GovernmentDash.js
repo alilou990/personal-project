@@ -73,12 +73,13 @@ export default class GovernmentDash extends Component {
             )
         })
         return (
-            <div className='gov-title-container'>
+            <div className='catagory-title-container'>
+                <h1 className='catagory-title'>Governments</h1>
                 {!this.state.createGov
                 ?
                 (<div>
-                <button onClick={this.handleAddToggle}>Add An Article</button>
-                {mappedGovs}
+                <button onClick={this.handleAddToggle} className='add-article btn'>Add An Article</button>
+                
                 </div>)
                 :
                 (<div>
@@ -102,6 +103,9 @@ export default class GovernmentDash extends Component {
                        value={this.state.content} />
                     <button onClick={this.addGov}>Submit</button>
                 </div>)}
+                <div className='mapped-article-container'>
+                    {mappedGovs}
+                </div>
             </div>
         )
     }

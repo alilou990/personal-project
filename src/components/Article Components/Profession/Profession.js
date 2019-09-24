@@ -70,38 +70,39 @@ export default class Profession extends Component {
                 {!this.state.editStatus
                 ?
                 (<div className='article-container'>
-                    <h1>{prof.title}</h1>
-                    <img src={prof.img} alt='article pic' className='article-iprofe'/>
-                    <p>{prof.content}</p>
-                    <button onClick={this.handleEditToggle}>Edit</button>
-                    <button onClick={() => this.deleteArticle(prof.id)}>Delete</button>
+                    <div className='main-content'>
+                        <h1 className='article-title'>{prof.title}</h1>
+                        <img src={prof.img} alt='article pic' className='article-image'/>
+                        <div className='content-container'>
+                            <p className='article-content'>{prof.content}</p>
+                        </div>
+                        <div className='btn-container'>
+                            <button onClick={this.handleEditToggle} className='article btn'>Edit</button>
+                            <button onClick={() => this.deleteArticle(prof.id)} className='article btn'>Delete</button>
+                        </div>
+                    </div>
                 </div>)
                 :
                 (<div>
                      <label>Title</label>
                     <input
                        defaultValue={prof.title}
-                    //    type='text'
                        name='editTitle'
                        onChange={this.handleOnChange}
-                    //    value={this.state.editTitle} 
                        />
                     <label>Content</label>
                     <input 
                         defaultValue={prof.content}
-                    //    type='text'
                        name='editContent'
                        onChange={this.handleOnChange}
-                    //    value={this.state.editContent} 
                        />
                     <label>Image</label>
                     <input 
                        defaultValue={prof.img}
-                    //    type='url'
                        name='editImg'
                        onChange={this.handleOnChange}
-                    //    value={this.state.editIprofe} 
                     /> 
+                    <button onClick={this.handleEditToggle}>Cancel</button>
                     <button onClick={() => this.updateArticle(prof.id)}>Submit</button>
                 </div>)
                 }

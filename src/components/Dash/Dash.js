@@ -34,6 +34,7 @@ export default class Dash extends Component {
     getWorlds = () => {
         axios.get('api/worlds')
             .then(worlds => {
+                console.log(worlds)
                 this.setState({
                     worlds: worlds.data
                 })
@@ -63,10 +64,11 @@ export default class Dash extends Component {
     render() {
         const mappedWorlds = this.state.worlds.map((world, i) => {
            return(
-                <div className='links-container' world={world} key={i}>
-                    {/* need an image here  */}
-                    <Link to={`/world/${world.id}`} key={i}> <button className='world-links'>{world.name}</button></Link>
-                </div>
+                    <div className='links-container' world={world} key={i}>
+                        {/* need an image here  */}
+                        <Link to={`/world/${world.id}`} key={i}> <button className='world-links'>{world.name}</button></Link>
+                    </div>
+    
            )
            })
         console.log(this.props)

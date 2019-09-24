@@ -13,18 +13,47 @@ import ReligionDash from '../Article Components/Religion/ReligionDash'
 import TradeDash from '../Article Components/Trade/TradeDash'
 
 
+import './World.css'
+
+
 export default class World extends Component {
     constructor(){
         super();
         this.state = {
             updateWorld: false,
-            name: ''
+            menu: false,
+            editName: '',
+            worldName: ''
         }
+    }
+
+    componentDidMount(){
+        this.getName()
+    }
+
+    getName = () => {
+        const id = this.props.match.params.worldid
+        axios.get(`/api/world/${id}`)
+            .then(name => {
+                console.log(name)
+                this.setState({
+                    worldName: name.data[0].name
+                })
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
     handleUpdateToggle = () => {
         this.setState({
             updateWorld: !this.state.updateWorld
+        })
+    }
+
+    handleMenuSlide = () => {
+        this.setState({
+            menu: !this.state.menu
         })
     }
 
@@ -37,7 +66,7 @@ export default class World extends Component {
         }
         axios.put(`/api/worlds/${id}`, body)
             .then(res => {
-                console.log(res.data)
+                
                 this.handleUpdateToggle()
             })
             .catch(error => {
@@ -52,37 +81,45 @@ export default class World extends Component {
     }
 
     render() {
-        
+        console.log(this.state.worldName)
+        const {worldName} = this.state
         const id = this.props.match.params.worldid
         return (
-            <div>
-                <Link to={`/world/${id}/climate`}><button>Climates</button></Link>
-                    <Link to={`/world/${id}/gov`}><button>Governments</button></Link>
-                    <Link to={`/world/${id}/lang`}><button>Languages</button></Link>
-                    <Link to={`/world/${id}/magic`}><button>Magic</button></Link>
-                    <Link to={`/world/${id}/myth`}><button>Myths and Folklore</button></Link>
-                    <Link to={`/world/${id}/prof`}><button>Professions</button></Link>
-                    <Link to={`/world/${id}/religion`}><button>Religions</button></Link>
-                    <Link to={`/world/${id}/trade`}><button>Trade and Resources</button></Link>
-                 <div>
-                {!this.state.updateWorld
-                ?
-                <div>
-                    <h1>{}</h1>
-                    <button onClick={this.handleUpdateToggle}>Edit</button>
-                   <Link to='/dashboard'><button>Back</button></Link> 
+            <div className='world-main-container'>
+                <Link to='/dashboard'><button className='all-worlds btn'>Back To All Worlds</button></Link> 
+                <div className='edit-container'>
+                    {!this.state.updateWorld
+                    ?
+                    <div className='world-title-container'> 
+                        <h1 className='world-title'>{worldName}</h1>
+                        <button onClick={this.handleUpdateToggle} className='toggle btn'>Edit World Name</button>
+                    
+                    </div>
+                    :
+                    (<div className='update-world-form'>
+                        <label>New Name:</label>
+                        <input 
+                        type='text' 
+                        name='name'
+                        onChange={this.handleOnChange}
+                        value={this.state.editName} />
+                        <button onClick={this.handleUpdateToggle} classname='edit btn'>>Cancel</button>
+                        <button onClick={this.updateWorld} classname='edit btn'>Submit</button>
+                    </div>)
+                    } 
                 </div>
-                :
-                (<div className='update-world-form'>
-                    <label>New Name:</label>
-                    <input 
-                    type='text' 
-                    name='name'
-                    onChange={this.handleOnChange}
-                    value={this.state.name} />
-                    <button onClick={this.updateWorld}>Submit</button>
-                </div>)
-                }
+                <div className='world-navbar'>
+                <Link to={`/world/${id}/climate`}><button className='catagory btn'>Climates</button></Link>
+                    <Link to={`/world/${id}/gov`}><button className='catagory btn'>Governments</button></Link>
+                    <Link to={`/world/${id}/lang`}><button className='catagory btn'>Languages</button></Link>
+                    <Link to={`/world/${id}/magic`}><button className='catagory btn'>Magic</button></Link>
+                    <Link to={`/world/${id}/myth`}><button className='catagory btn'>Myths and Folklore</button></Link>
+                    <Link to={`/world/${id}/prof`}><button className='catagory btn'>Professions</button></Link>
+                    <Link to={`/world/${id}/religion`}><button className='catagory btn'>Religions</button></Link>
+                    <Link to={`/world/${id}/trade`}><button className='catagory btn'>Trade and Resources</button></Link>
+                </div>
+                 <div>
+               
                 </div>
 
                     <Route path='/world/:worldid/characters' component={CharacterDash}/>

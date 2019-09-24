@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import {Route} from 'react-router-dom'
 import axios from 'axios'
 
 import Profession from './Profession'
@@ -76,12 +75,13 @@ export default class ProfDash extends Component {
             )
         })
         return (
-            <div className='prof-title-container'>
+            <div className='catagory-title-container'>
+                <h1 className='catagory-title'>Professions</h1>
                 {!this.state.createProf
                 ?
                 (<div>
-                <button onClick={this.handleAddToggle}>Add An Article</button>
-                {mappedProfs}
+                <button onClick={this.handleAddToggle} className='add-article btn'>Add An Article</button>
+                
                 </div>)
                 :
                 (<div>
@@ -105,7 +105,9 @@ export default class ProfDash extends Component {
                        value={this.state.content} />
                     <button onClick={this.addProf}>Submit</button>
                 </div>)}
-                <Route path='/world/:worldid/prof/:profid' component={Profession} />
+                <div className='mapped-article-container'>
+                    {mappedProfs}
+                </div>
             </div>
         )
     }

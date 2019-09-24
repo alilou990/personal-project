@@ -4,6 +4,12 @@ const getWorlds = async (req, res) => {
     return res.status(200).send(userWorlds)
 }
 
+const getName = async (req, res) => {
+    const {id} = req.params
+    const worldName = await req.app.get('db').world.get_world_name([id])
+        res.status(200).send(worldName)
+}
+
 const addWorld = async (req, res) => {
     const id = req.session.userid.id
     const {name} = req.body
@@ -30,6 +36,7 @@ const updateWorld = async (req, res) => {
 
 module.exports = {
     getWorlds,
+    getName,
     addWorld,
     // deleteWorld
     updateWorld

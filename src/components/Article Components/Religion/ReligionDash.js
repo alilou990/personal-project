@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import {Route} from 'react-router-dom'
 import axios from 'axios'
 
 import Religion from './Religion'
@@ -76,12 +75,13 @@ export default class ReligionDash extends Component {
             )
         })
         return (
-            <div className='religion-title-container'>
+            <div className='catagory-title-container'>
+                <h1 className='catagory-title'>Religions</h1>
                 {!this.state.createReligion
                 ?
                 (<div>
-                <button onClick={this.handleAddToggle}>Add An Article</button>
-                {mappedReligions}
+                <button onClick={this.handleAddToggle} className='add-article btn'>Add An Article</button>
+                
                 </div>)
                 :
                 (<div>
@@ -105,7 +105,9 @@ export default class ReligionDash extends Component {
                        value={this.state.content} />
                     <button onClick={this.addReligion}>Submit</button>
                 </div>)}
-            <Route path='/world/:worldid/religion/:religionid' component={Religion} />
+                <div className='mapped-article-container'>
+                    {mappedReligions}
+                </div>
             </div>
         )
     }

@@ -5,7 +5,7 @@ import './climate.css'
 
 
 export default class Climate extends Component {
-    //have state to store article object
+    //have state store article object
     constructor(){
         super();
         this.state = {
@@ -38,8 +38,6 @@ export default class Climate extends Component {
     }
 
     deleteArticle = (id) => {
-        //use id passed into function as parameter at end of endpoint, on backend pull off params and use that id to delete article
-        // /api/world/climate/climatearticle/:id (this should work for the update and delete, just send update info on body, delete does not need body)
         axios.delete(`/api/worlds/climate/climatearticle/${id}`)
             .then(res => {
                 this.props.getClimates()
@@ -59,7 +57,6 @@ export default class Climate extends Component {
         console.log(body)
         axios.put(`/api/worlds/climate/climatearticle/${id}`, body)
             .then(res => {
-                // this.props.updatedArticle(res.data)
                 this.props.getClimates()
                 this.handleEditToggle()
             })
@@ -93,38 +90,39 @@ export default class Climate extends Component {
                 {!this.state.editStatus
                 ?
                 (<div className='article-container'>
-                    <h1>{climate.title}</h1>
-                    <img src={climate.img} alt='article pic' className='article-image'/>
-                    <p>{climate.content}</p>
-                    <button onClick={this.handleEditToggle}>Edit</button>
-                    <button onClick={() => this.deleteArticle(climate.id)}>Delete</button>
+                    <div className='main-content'>
+                        <h1 className='article-title'>{climate.title}</h1>
+                        <img src={climate.img} alt='article pic' className='article-image'/>
+                        <div className='content-container'>
+                            <p className='article-content'>{climate.content}</p>
+                        </div>
+                        <div className='btn-container'>
+                            <button onClick={this.handleEditToggle} className='article btn'>Edit</button>
+                            <button onClick={() => this.deleteArticle(climate.id)} className='article btn'>Delete</button>
+                        </div>
+                    </div>
                 </div>)
                 :
                 (<div>
                      <label>Title</label>
                     <input
                        defaultValue={climate.title}
-                    //    type='text'
                        name='editTitle'
                        onChange={this.handleOnChange}
-                    //    value={this.state.editTitle} 
                        />
                     <label>Content</label>
                     <input 
                         defaultValue={climate.content}
-                    //    type='text'
                        name='editContent'
                        onChange={this.handleOnChange}
-                       value={this.state.editContent} 
                        />
                     <label>Image</label>
                     <input 
                        defaultValue={climate.img}
-                    //    type='url'
                        name='editImg'
                        onChange={this.handleOnChange}
-                       value={this.state.editImage} 
                     /> 
+                    <button onClick={this.handleEditToggle}>Cancel</button>
                     <button onClick={() => this.updateArticle(climate.id)}>Submit</button>
                 </div>)
                 }

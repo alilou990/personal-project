@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import {Route} from 'react-router-dom'
 import axios from 'axios'
 
 import Language from './Language'
@@ -76,12 +75,13 @@ export default class LanguageDash extends Component {
             )
         })
         return (
-            <div className='lang-title-container'>
+            <div className='catagory-title-container'>
+                <h1 className='catagory-title'>Languages</h1>
                 {!this.state.createLang
                 ?
                 (<div>
-                <button onClick={this.handleAddToggle}>Add An Article</button>
-                {mappedLangs}
+                <button onClick={this.handleAddToggle} className='add-article btn'>Add An Article</button>
+                
                 </div>)
                 :
                 (<div>
@@ -105,7 +105,9 @@ export default class LanguageDash extends Component {
                        value={this.state.content} />
                     <button onClick={this.addLang}>Submit</button>
                 </div>)}
-            <Route path='/world/:worldid/lang/:langid' component={Language} />
+                <div className='mapped-article-container'>
+                   {mappedLangs}
+                </div>
             </div>
         )
     }

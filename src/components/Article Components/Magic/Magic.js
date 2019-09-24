@@ -70,11 +70,17 @@ export default class Magic extends Component {
                 {!this.state.editStatus
                 ?
                 (<div className='article-container'>
-                    <h1>{mag.title}</h1>
-                    <img src={mag.img} alt='article pic' className='article-image'/>
-                    <p>{mag.content}</p>
-                    <button onClick={this.handleEditToggle}>Edit</button>
-                    <button onClick={() => this.deleteArticle(mag.id)}>Delete</button>
+                    <div className='main-content'>
+                        <h1 className='article-title'>{mag.title}</h1>
+                        <img src={mag.img} alt='article pic' className='article-image'/>
+                        <div className='content-container'>
+                        <p className='article-content'>{mag.content}</p>
+                        </div>
+                        <div className='btn-container'>
+                            <button onClick={this.handleEditToggle} className='article btn'>Edit</button>
+                            <button onClick={() => this.deleteArticle(mag.id)} className='article btn'>Delete</button>
+                        </div>
+                    </div>
                 </div>)
                 :
                 (<div>
@@ -102,6 +108,7 @@ export default class Magic extends Component {
                        onChange={this.handleOnChange}
                     //    value={this.state.editImage} 
                     /> 
+                    <button onClick={this.handleEditToggle}>Cancel</button>
                     <button onClick={() => this.updateArticle(mag.id)}>Submit</button>
                 </div>)
                 }

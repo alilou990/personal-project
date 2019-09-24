@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import {Route} from 'react-router-dom'
 import axios from 'axios'
 
 import Myth from './Myth'
@@ -76,12 +75,13 @@ export default class MythDash extends Component {
             )
         })
         return (
-            <div className='myth-title-container'>
+            <div className='catagory-title-container'>
+                <h1 className='catagory-title'>Myths and Folklore</h1>
                 {!this.state.createMyth
                 ?
                 (<div>
-                <button onClick={this.handleAddToggle}>Add An Article</button>
-                {mappedMyths}
+                <button onClick={this.handleAddToggle} className='add-article btn'>Add An Article</button>
+                
                 </div>)
                 :
                 (<div>
@@ -105,7 +105,9 @@ export default class MythDash extends Component {
                        value={this.state.content} />
                     <button onClick={this.addMyth}>Submit</button>
                 </div>)}
-                <Route path='/world/:worldid/myth/:mythid' component={Myth} />
+                <div className='mapped-article-container'>
+                    {mappedMyths}
+                </div>
             </div>
         )
     }

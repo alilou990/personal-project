@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import {Route}from 'react-router-dom'
 import axios from 'axios'
 
 import Magic from './Magic'
@@ -75,12 +74,13 @@ export default class MagicDash extends Component {
             )
         })
         return (
-            <div className='mag-title-container'>
+            <div className='catagory-title-container'>
+                <h1 className='catagory-title'>Magic</h1>
                 {!this.state.createMag
                 ?
                 (<div>
-                <button onClick={this.handleAddToggle}>Add An Article</button>
-                {mappedMags}
+                <button onClick={this.handleAddToggle} className='add-article btn'>Add An Article</button>
+                
                 </div>)
                 :
                 (<div>
@@ -105,7 +105,9 @@ export default class MagicDash extends Component {
                     <button onClick={this.addMag}>Submit</button>
                 </div>)}
 
-            <Route path='/world/:worldid/magic/:magicid' component={Magic} />
+                <div className='mapped-article-container'>
+                    {mappedMags}
+                </div>
             </div>
         )
     }

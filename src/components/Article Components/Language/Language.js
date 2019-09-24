@@ -70,11 +70,17 @@ export default class Language extends Component {
                 {!this.state.editStatus
                 ?
                 (<div className='article-container'>
-                    <h1>{lang.title}</h1>
-                    <img src={lang.img} alt='article pic' className='article-image'/>
-                    <p>{lang.content}</p>
-                    <button onClick={this.handleEditToggle}>Edit</button>
-                    <button onClick={() => this.deleteArticle(lang.id)}>Delete</button>
+                    <div className='main-content'>
+                        <h1 className='article-title'>{lang.title}</h1>
+                        <img src={lang.img} alt='article pic' className='article-image'/>
+                        <div className='content-container'>
+                            <p className='article-content'>{lang.content}</p>
+                        </div>
+                        <div className='btn-container'>
+                            <button onClick={this.handleEditToggle} className='article btn'>Edit</button>
+                            <button onClick={() => this.deleteArticle(lang.id)} className='article btn'>Delete</button>
+                        </div>
+                    </div>
                 </div>)
                 :
                 (<div>
@@ -102,6 +108,7 @@ export default class Language extends Component {
                        onChange={this.handleOnChange}
                     //    value={this.state.editImage} 
                     /> 
+                    <button onClick={this.handleEditToggle}>Cancel</button>
                     <button onClick={() => this.updateArticle(lang.id)}>Submit</button>
                 </div>)
                 }

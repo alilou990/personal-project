@@ -70,11 +70,17 @@ export default class Government extends Component {
                 {!this.state.editStatus
                 ?
                 (<div className='article-container'>
-                    <h1>{gov.title}</h1>
-                    <img src={gov.img} alt='article pic' className='article-image'/>
-                    <p>{gov.content}</p>
-                    <button onClick={this.handleEditToggle}>Edit</button>
-                    <button onClick={() => this.deleteArticle(gov.id)}>Delete</button>
+                    <div className='main-content'>
+                        <h1 className='article-title'>{gov.title}</h1>
+                        <img src={gov.img} alt='article pic' className='article-image'/>
+                        <div className='content-container'>
+                            <p className='article-content'>{gov.content}</p>
+                        </div>
+                        <div className='btn-container'>
+                            <button onClick={this.handleEditToggle} className='article btn'>Edit</button>
+                            <button onClick={() => this.deleteArticle(gov.id)} className='article btn'>Delete</button>
+                        </div>
+                    </div>
                 </div>)
                 :
                 (<div>
@@ -102,6 +108,7 @@ export default class Government extends Component {
                        onChange={this.handleOnChange}
                     //    value={this.state.editImage} 
                     /> 
+                    <button onClick={this.handleEditToggle}>Cancel</button>
                     <button onClick={() => this.updateArticle(gov.id)}>Submit</button>
                 </div>)
                 }
