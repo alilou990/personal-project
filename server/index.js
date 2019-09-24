@@ -3,7 +3,6 @@ const express = require('express')
 const session = require('express-session')
 const cors = require('cors')
 const massive = require('massive')
-const aws = require('aws-sdk')
 
 //ctrl files
 const ctrlAuth = require('./controllers/authController')
@@ -19,6 +18,8 @@ const ctrlProf = require('./controllers/articleContollers.js/profController')
 
 //setting up app
 const app = express()
+
+app.use( express.static( `${__dirname}/../build` ) );
 
 //env variables
 const {
@@ -117,39 +118,6 @@ app.post('/api/worlds/:worldid/prof', ctrlProf.addProf)
 app.delete('/api/worlds/prof/profarticle/:id', ctrlProf.deleteProf)
 app.put('/api/worlds/prof/profarticle/:id', ctrlProf.updateProf)
 
-//aws s3 endpoint
-app.get('/sign-s3', (req, res) => {
-
-    aws.config = {
-      region: 'us-west-1',
-      accessKeyId: AWS_ACCESS_KEY_ID,
-      secretAccessKey: AWS_SECRET_ACCESS_KEY
-    }
-    
-    const s3 = new aws.S3();
-    const fileName = req.query['file-name'];
-    const fileType = req.query['file-type'];
-    const s3Params = {
-      Bucket: S3_BUCKET,
-      Key: fileName,
-      Expires: 60,
-      ContentType: fileType,
-      ACL: 'public-read'
-    };
-  
-    s3.getSignedUrl('putObject', s3Params, (error, data) => {
-      if(error){
-        console.log(error);
-        return res.end();
-      }
-      const returnData = {
-        signedRequest: data,
-        url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
-      };
-  
-      return res.send(returnData)
-    });
-  });
 
 
 //app listening

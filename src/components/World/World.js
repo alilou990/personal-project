@@ -103,7 +103,7 @@ export default class World extends Component {
                         name='name'
                         onChange={this.handleOnChange}
                         value={this.state.editName} />
-                        <button onClick={this.handleUpdateToggle} classname='edit btn'>>Cancel</button>
+                        <button onClick={this.handleUpdateToggle} classname='edit btn'>Cancel</button>
                         <button onClick={this.updateWorld} classname='edit btn'>Submit</button>
                     </div>)
                     } 
