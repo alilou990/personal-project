@@ -96,20 +96,23 @@ export default class World extends Component {
                     
                     </div>
                     :
-                    (<div className='update-world-form'>
+                    (<div className='create-world-form update'>
                         <label>New Name:</label>
                         <input 
+                        className='form-input'
                         type='text' 
                         name='name'
                         onChange={this.handleOnChange}
                         value={this.state.editName} />
-                        <button onClick={this.handleUpdateToggle} classname='edit btn'>Cancel</button>
-                        <button onClick={this.updateWorld} classname='edit btn'>Submit</button>
+                        <div className='form-btn-container'>
+                            <button onClick={this.handleUpdateToggle} className='form-btn update-btn'>Cancel</button>
+                            <button onClick={this.updateWorld} className='form-btn update-btn'>Submit</button>
+                        </div>
                     </div>)
                     } 
                 </div>
                 <div className='world-navbar'>
-                <Link to={`/world/${id}/climate`}><button className='catagory btn'>Climates</button></Link>
+                <Link to={`/world/${id}/climate`}><button className='catagory btn'>Geography</button></Link>
                     <Link to={`/world/${id}/gov`}><button className='catagory btn'>Governments</button></Link>
                     <Link to={`/world/${id}/lang`}><button className='catagory btn'>Languages</button></Link>
                     <Link to={`/world/${id}/magic`}><button className='catagory btn'>Magic</button></Link>

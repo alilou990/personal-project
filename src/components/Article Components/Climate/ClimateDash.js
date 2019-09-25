@@ -86,33 +86,47 @@ export default class ClimateDash extends Component {
         })
         return (
             <div className='catagory-title-container'>
-                <h1 className='catagory-title'>Climate</h1>
+                <h1 className='catagory-title'>Geography</h1>
                 {!this.state.createClimate
                 ?
                 (<div>
                     <button onClick={this.handleAddToggle} className='add-article btn'>Add An Article</button>
                 </div>)
                 :
-                (<div>
-                    <label>Title</label>
-                    <input 
-                       type='text'
-                       name='title'
-                       onChange={this.handleOnChange}
-                       value={this.state.title} />
-                    <label>Content</label>
-                    <input 
-                       type='text'
-                       name='content'
-                       onChange={this.handleOnChange}
-                       value={this.state.content} />
-                    <label>Image</label>
-                    <input 
-                       type='url'
-                       name='img'
-                       onChange={this.handleOnChange}
-                       value={this.state.image} /> 
-                    <button onClick={() => this.addClimate(this.props.match.params.worldid)}>Submit</button>
+                (<div className='add-article-form'>
+                    <h1 className='form-title'>Add Article</h1>
+                    <div className='add-form-title-conatiner'>
+                        <input 
+                            className='add-title-input input add-input'
+                            placeholder='Title'
+                            type='text'
+                            name='title'
+                            onChange={this.handleOnChange}
+                            value={this.state.title} />
+                    </div>
+                    <div className='add-form-image-conatiner'>
+                        <input 
+                            className='add-image-input input add-input'
+                            placeholder='Image URL'
+                            type='url'
+                            name='img'
+                            onChange={this.handleOnChange}
+                            value={this.state.image} /> 
+                    </div>
+                    <div className='add-form-content-conatiner'>
+                        <textarea 
+                            className='add-content-input input add-input'
+                            row='10'
+                            cols='80'
+                            placeholder='Content'
+                            name='content'
+                            onChange={this.handleOnChange}
+                            value={this.state.content} />
+                    </div>
+                    <div className='add-btn-container'>
+                        <button onClick={this.handleAddToggle} className='add-article-btn'>Cancel</button>
+                        <button onClick={() => this.addClimate(this.props.match.params.worldid)} className='add-article-btn'>Submit</button>
+                    </div>
                 </div>)}
                 <div className='mapped-article-container'>
                     {mappedClimates}

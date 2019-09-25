@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 
-
-
-
 export default class Trade extends Component {
     //have state to store article object
     constructor(){
@@ -83,35 +80,39 @@ export default class Trade extends Component {
                     </div>
                 </div>)
                 :
-                (<div>
-                     <label>Title</label>
-                    <input
-                       defaultValue={trade.title}
-                    //    type='text'
+                (<div className='edit-form'>
+                <h1 className='form-title'>Edit Article</h1>
+                <div className='add-form-title-conatiner'>
+                    <input 
+                        className='add-title-input input add-input'
+                        defaultValue={trade.title}
                        name='editTitle'
-                       onChange={this.handleOnChange}
-                    //    value={this.state.editTitle} 
-                       />
-                    <label>Content</label>
+                       onChange={this.handleOnChange} />
+                </div>
+                <div className='add-form-image-conatiner'>
                     <input 
+                        className='add-image-input input add-input'
+                        placeholder='Image URL'
+                        type='url'
+                        defaultValue={trade.img}
+                        name='editImg'
+                        onChange={this.handleOnChange}/> 
+                </div>
+                <div className='add-form-content-conatiner'>
+                    <textarea 
+                        className='add-content-input input add-input'
+                        row='10'
+                        cols='80'
+                        placeholder='Content'
                         defaultValue={trade.content}
-                    //    type='text'
-                       name='editContent'
-                       onChange={this.handleOnChange}
-                    //    value={this.state.editContent} 
-                       />
-                    <label>Image</label>
-                    <input 
-                       defaultValue={trade.img}
-                    //    type='url'
-                       name='editImg'
-                       onChange={this.handleOnChange}
-                    //    value={this.state.editItradee} 
-                    /> 
-                    <button onClick={this.handleEditToggle}>Cancel</button>
-                    <button onClick={() => this.updateArticle(trade.id)}>Submit</button>
-                </div>)
-                }
+                        name='editContent'
+                        onChange={this.handleOnChange}/>
+                </div>
+                <div className='add-btn-container'>
+                    <button onClick={this.handleEditToggle} className='add-article-btn'>Cancel</button>
+                    <button onClick={() => this.updateArticle(trade.id)} className='add-article-btn'>Submit</button>
+                </div>
+            </div>)}
             </div>
         )
     }

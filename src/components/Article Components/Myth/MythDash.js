@@ -84,27 +84,41 @@ export default class MythDash extends Component {
                 
                 </div>)
                 :
-                (<div>
-                    <label>Title</label>
+                (<div className='add-article-form'>
+                <h1 className='form-title'>Add Article</h1>
+                <div className='add-form-title-conatiner'>
                     <input 
-                       type='text'
-                       name='title'
-                       onChange={this.handleOnChange}
-                       value={this.state.title} />
-                    <label>Image</label>
+                        className='add-title-input input add-input'
+                        placeholder='Title'
+                        type='text'
+                        name='title'
+                        onChange={this.handleOnChange}
+                        value={this.state.title} />
+                </div>
+                <div className='add-form-image-conatiner'>
                     <input 
-                       type='url'
-                       name='img'
-                       onChange={this.handleOnChange}
-                       value={this.state.image} /> 
-                    <label>Content</label>
-                    <input 
-                       type='text'
-                       name='content'
-                       onChange={this.handleOnChange}
-                       value={this.state.content} />
-                    <button onClick={this.addMyth}>Submit</button>
-                </div>)}
+                        className='add-image-input input add-input'
+                        placeholder='Image URL'
+                        type='url'
+                        name='img'
+                        onChange={this.handleOnChange}
+                        value={this.state.image} /> 
+                </div>
+                <div className='add-form-content-conatiner'>
+                    <textarea 
+                        className='add-content-input input add-input'
+                        row='10'
+                        cols='80'
+                        placeholder='Content'
+                        name='content'
+                        onChange={this.handleOnChange}
+                        value={this.state.content} />
+                </div>
+                <div className='add-btn-container'>
+                    <button onClick={this.handleAddToggle} className='add-article-btn'>Cancel</button>
+                    <button onClick={this.addMyth} className='add-article-btn'>Submit</button>
+                </div>
+            </div>)}
                 <div className='mapped-article-container'>
                     {mappedMyths}
                 </div>

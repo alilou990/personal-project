@@ -1,7 +1,7 @@
 .main-world-display{
     min-height: 100vh;
     width: 100%;
-    background-image: url(https://worldbuilding-app.s3-us-west-1.amazonaws.com/dash-final-real.jpg);
+    background-image: url(dash-final-real.jpg);
     background-image: cover;
     background-attachment: fixed;
     display: flex;
@@ -140,7 +140,7 @@
 
 @media (max-width: 500px){
     .main-world-display{
-        background-image: url(https://worldbuilding-app.s3-us-west-1.amazonaws.com/phone-dash-final.jpg);
+        background-image: url(phone-dash-final.jpg);
         
     }
 

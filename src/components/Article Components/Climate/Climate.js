@@ -93,39 +93,49 @@ export default class Climate extends Component {
                     <div className='main-content'>
                         <h1 className='article-title'>{climate.title}</h1>
                         <img src={climate.img} alt='article pic' className='article-image'/>
-                        <div className='content-container'>
-                            <p className='article-content'>{climate.content}</p>
-                        </div>
-                        <div className='btn-container'>
+                    <div className='content-container'>
+                        <p className='article-content'>{climate.content}</p>
+                    </div>
+                    <div className='btn-container'>
                             <button onClick={this.handleEditToggle} className='article btn'>Edit</button>
                             <button onClick={() => this.deleteArticle(climate.id)} className='article btn'>Delete</button>
-                        </div>
+                    </div>
                     </div>
                 </div>)
                 :
-                (<div>
-                     <label>Title</label>
-                    <input
-                       defaultValue={climate.title}
+                (<div className='edit-form'>
+                <h1 className='form-title'>Edit Article</h1>
+                <div className='add-form-title-conatiner'>
+                    <input 
+                        className='add-title-input input add-input'
+                        defaultValue={climate.title}
                        name='editTitle'
-                       onChange={this.handleOnChange}
-                       />
-                    <label>Content</label>
+                       onChange={this.handleOnChange} />
+                </div>
+                <div className='add-form-image-conatiner'>
                     <input 
+                        className='add-image-input input add-input'
+                        placeholder='Image URL'
+                        type='url'
+                        defaultValue={climate.img}
+                        name='editImg'
+                        onChange={this.handleOnChange}/> 
+                </div>
+                <div className='add-form-content-conatiner'>
+                    <textarea 
+                        className='add-content-input input add-input'
+                        row='10'
+                        cols='80'
+                        placeholder='Content'
                         defaultValue={climate.content}
-                       name='editContent'
-                       onChange={this.handleOnChange}
-                       />
-                    <label>Image</label>
-                    <input 
-                       defaultValue={climate.img}
-                       name='editImg'
-                       onChange={this.handleOnChange}
-                    /> 
-                    <button onClick={this.handleEditToggle}>Cancel</button>
-                    <button onClick={() => this.updateArticle(climate.id)}>Submit</button>
-                </div>)
-                }
+                        name='editContent'
+                        onChange={this.handleOnChange}/>
+                </div>
+                <div className='add-btn-container'>
+                    <button onClick={this.handleEditToggle} className='add-article-btn'>Cancel</button>
+                    <button onClick={() => this.updateArticle(climate.id)} className='add-article-btn'>Submit</button>
+                </div>
+            </div>)}
             </div>
         )
     }

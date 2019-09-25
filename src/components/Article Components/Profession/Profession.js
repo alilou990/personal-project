@@ -83,29 +83,39 @@ export default class Profession extends Component {
                     </div>
                 </div>)
                 :
-                (<div>
-                     <label>Title</label>
-                    <input
-                       defaultValue={prof.title}
+                (<div className='edit-form'>
+                <h1 className='form-title'>Edit Article</h1>
+                <div className='add-form-title-conatiner'>
+                    <input 
+                        className='add-title-input input add-input'
+                        defaultValue={prof.title}
                        name='editTitle'
-                       onChange={this.handleOnChange}
-                       />
-                    <label>Content</label>
+                       onChange={this.handleOnChange} />
+                </div>
+                <div className='add-form-image-conatiner'>
                     <input 
+                        className='add-image-input input add-input'
+                        placeholder='Image URL'
+                        type='url'
+                        defaultValue={prof.img}
+                        name='editImg'
+                        onChange={this.handleOnChange}/> 
+                </div>
+                <div className='add-form-content-conatiner'>
+                    <textarea 
+                        className='add-content-input input add-input'
+                        row='10'
+                        cols='80'
+                        placeholder='Content'
                         defaultValue={prof.content}
-                       name='editContent'
-                       onChange={this.handleOnChange}
-                       />
-                    <label>Image</label>
-                    <input 
-                       defaultValue={prof.img}
-                       name='editImg'
-                       onChange={this.handleOnChange}
-                    /> 
-                    <button onClick={this.handleEditToggle}>Cancel</button>
-                    <button onClick={() => this.updateArticle(prof.id)}>Submit</button>
-                </div>)
-                }
+                        name='editContent'
+                        onChange={this.handleOnChange}/>
+                </div>
+                <div className='add-btn-container'>
+                    <button onClick={this.handleEditToggle} className='add-article-btn'>Cancel</button>
+                    <button onClick={() => this.updateArticle(prof.id)} className='add-article-btn'>Submit</button>
+                </div>
+            </div>)}
             </div>
         )
     }
