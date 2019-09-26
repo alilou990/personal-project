@@ -58,7 +58,7 @@
 }
 
 
-@media (max-width: 500px){
+@media screen and (max-width: 500px){
     .navbar{
         height: 5em;
         background-image: url(https://i.ibb.co/Rps5h2R/header-2.jpg)

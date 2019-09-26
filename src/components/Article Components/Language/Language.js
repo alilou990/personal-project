@@ -73,9 +73,9 @@ export default class Language extends Component {
                     <div className='main-content'>
                         <h1 className='article-title'>{lang.title}</h1>
                         <img src={lang.img} alt='article pic' className='article-image'/>
-                        <div className='content-container'>
+                        <section className='content-container'>
                             <p className='article-content'>{lang.content}</p>
-                        </div>
+                        </section>
                         <div className='btn-container'>
                             <button onClick={this.handleEditToggle} className='article btn'>Edit</button>
                             <button onClick={() => this.deleteArticle(lang.id)} className='article btn'>Delete</button>

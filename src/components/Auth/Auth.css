@@ -94,7 +94,7 @@
 }
 
 
-@media (max-width:500px){
+@media screen and (max-width:500px){
     .auth-container{
         background-image: url(https://i.ibb.co/LY4WqBj/auth-phone-lg.jpg);
     }

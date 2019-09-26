@@ -73,9 +73,9 @@ export default class Profession extends Component {
                     <div className='main-content'>
                         <h1 className='article-title'>{prof.title}</h1>
                         <img src={prof.img} alt='article pic' className='article-image'/>
-                        <div className='content-container'>
+                        <section className='content-container'>
                             <p className='article-content'>{prof.content}</p>
-                        </div>
+                        </section>
                         <div className='btn-container'>
                             <button onClick={this.handleEditToggle} className='article btn'>Edit</button>
                             <button onClick={() => this.deleteArticle(prof.id)} className='article btn'>Delete</button>

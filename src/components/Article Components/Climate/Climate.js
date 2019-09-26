@@ -93,9 +93,9 @@ export default class Climate extends Component {
                     <div className='main-content'>
                         <h1 className='article-title'>{climate.title}</h1>
                         <img src={climate.img} alt='article pic' className='article-image'/>
-                    <div className='content-container'>
+                    <section className='content-container'>
                         <p className='article-content'>{climate.content}</p>
-                    </div>
+                    </section>
                     <div className='btn-container'>
                             <button onClick={this.handleEditToggle} className='article btn'>Edit</button>
                             <button onClick={() => this.deleteArticle(climate.id)} className='article btn'>Delete</button>

@@ -73,9 +73,9 @@ export default class Myth extends Component {
                     <div className='main-content'>
                         <h1 className='article-title'>{myth.title}</h1>
                         <img src={myth.img} alt='article pic' className='article-image'/>
-                        <div className='content-container'>
+                        <section className='content-container'>
                             <p className='article-content'>{myth.content}</p>
-                        </div>
+                        </section>
                         <div className='btn-container'>
                             <button onClick={this.handleEditToggle} className='article btn'>Edit</button>
                             <button onClick={() => this.deleteArticle(myth.id)} className='article btn'>Delete</button>

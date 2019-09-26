@@ -84,7 +84,7 @@
 }
 
 
-@media (max-width: 500px){
+@media screen and (max-width: 500px){
     .main-article-container{
         min-height: 100vh;
         width: 100%;

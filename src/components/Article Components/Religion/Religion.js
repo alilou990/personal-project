@@ -73,9 +73,9 @@ export default class Religion extends Component {
                     <div className='main-content'>
                         <h1 className='catagory-title'>{religion.title}</h1>
                         <img src={religion.img} alt='article pic' className='article-image'/>
-                        <div className='content-container'>
+                        <section className='content-container'>
                             <p className='article-content'>{religion.content}</p>
-                        </div>
+                        </section>
                         <div className='btn-container'>
                             <button onClick={this.handleEditToggle} className='article btn'>Edit</button>
                             <button onClick={() => this.deleteArticle(religion.id)} className='article btn'>Delete</button>

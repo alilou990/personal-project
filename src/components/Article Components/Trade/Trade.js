@@ -70,9 +70,9 @@ export default class Trade extends Component {
                     <div className='main-content'>
                         <h1 className='catagory-title'>{trade.title}</h1>
                         <img src={trade.img} alt='article pic' className='article-image'/>
-                        <div className='content-container'>
+                        <section className='content-container'>
                             <p className='article-content'>{trade.content}</p>
-                        </div>
+                        </section>
                         <div className='btn-container'>
                             <button onClick={this.handleEditToggle} className='article btn'>Edit</button>
                             <button onClick={() => this.deleteArticle(trade.id)} className='article btn'>Delete</button>
